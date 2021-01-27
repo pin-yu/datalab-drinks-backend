@@ -1,5 +1,13 @@
 # DataLab Drinks Backend
 
+## Run the server
+
+```bash
+go run src/main.go
+```
+
+then the server starts listening on port 5000
+
 ## API
 
 - GET: `/v1/menus` (done)
