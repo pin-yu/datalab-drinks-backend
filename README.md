@@ -13,8 +13,7 @@ then the server starts listening on port 5000
 - GET: `/v1/menus` (done)
     - return Cama's menu in json format
 
-<details><summary>click me to see detail json</summary>
-<p>
+
 ```json
 {
     "menu_version": "2020W",
@@ -303,8 +302,7 @@ then the server starts listening on port 5000
     ]
 }
 ```
-</p>
-</details>
+
 
 - GET: `/v1/orders` (in development)
     - return the orders within `this week`!
