@@ -1,8 +1,8 @@
 package services
 
 import (
-	"fmt"
 	"log"
+	"net/http"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -10,32 +10,35 @@ import (
 )
 
 // OrderDrinks returns a http result and a json message
-func OrderDrinks(c *gin.Context) string {
-	orm.NewDB()
+func OrderDrinks(c *gin.Context) (int, string) {
+	order := parseOrderQuery(c)
+	orm.OrderExist(order)
+	orm.WriteOrder(order)
 
+	return http.StatusOK, "drinks are ordered"
+}
+
+func parseOrderQuery(c *gin.Context) *orm.Order {
 	user := c.Query("order_by")
-	itemID := c.Query("item_id")
-	sugar, err := strconv.ParseUint(c.Query("sugar"), 10, 64)
-	if err != nil {
-		log.Panic("bad sugar value")
-	}
-	sugarUint8 := uint8(sugar)
+	itemID := parseUint8(c.Query("item_id"))
+	sugar := parseUint8(c.Query("sugar"))
+	ice := parseUint8(c.Query("ice"))
 
-	ice, err := strconv.ParseUint(c.Query("ice"), 10, 64)
-	if err != nil {
-		log.Panic("bad ice value")
-	}
-	iceUint8 := uint8(ice)
-
-	order := orm.Order{
+	order := &orm.Order{
 		OrderBy: user,
 		Item:    itemID,
-		Sugar:   sugarUint8,
-		Ice:     iceUint8,
+		Sugar:   sugar,
+		Ice:     ice,
 	}
+	return order
+}
 
-	fmt.Printf("user: %v, itemId: %v, sugar: %v, ice: %v", user, itemID, sugar, ice)
-	return "put orders"
+func parseUint8(s string) uint8 {
+	value, err := strconv.ParseUint(s, 10, 64)
+	if err != nil {
+		log.Printf("bad value in parseUint8: %v", s)
+	}
+	valueUint8 := uint8(value)
 
-	// write to db
+	return valueUint8
 }

@@ -14,12 +14,7 @@ func addOrdersRoutes(rg *gin.RouterGroup) {
 		c.JSON(http.StatusOK, "get orders")
 	})
 
-	// the order requests should be idempotent, use PUT instead of Post
-	orders.PUT("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, services.OrderDrinks(c))
-	})
-
-	orders.DELETE("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "delete orders")
+	orders.POST("/", func(c *gin.Context) {
+		c.JSON(services.OrderDrinks(c))
 	})
 }

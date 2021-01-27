@@ -89,7 +89,7 @@ menu:
       - 
         id: 11
         item: "蜂蜜鮮奶茶"
-        price:
+        prices:
           large: 85
           medium: 65
         cold: true
@@ -97,7 +97,7 @@ menu:
       - 
         id: 12
         item: "紅茶拿鐵"
-        price:
+        prices:
           large: 80
           medium: 60
         cold: true
@@ -105,7 +105,7 @@ menu:
       - 
         id: 13
         item: "皇家奶茶"
-        price:
+        prices:
           large: 50
           medium: 40
         cold: true
@@ -113,7 +113,7 @@ menu:
       - 
         id: 14
         item: "抹茶鮮奶"
-        price:
+        prices:
           large: 80
           medium: 65
         cold: true
@@ -121,7 +121,7 @@ menu:
       - 
         id: 15
         item: "芒果烤茶"
-        price:
+        prices:
           large: 65
           medium: null
         cold: true
@@ -129,7 +129,7 @@ menu:
       - 
         id: 16
         item: "英倫早餐茶"
-        price:
+        prices:
           large: null
           medium: 40
         cold: true
@@ -137,7 +137,7 @@ menu:
       - 
         id: 17
         item: "花草茶"
-        price:
+        prices:
           large: null
           medium: 40
         cold: true
@@ -145,7 +145,7 @@ menu:
       - 
         id: 18
         item: "日式烘烤煎茶"
-        price:
+        prices:
           medium: 40
         cold: true
         hot: true
@@ -155,7 +155,7 @@ menu:
       - 
         id: 19
         item: "經典巧克力"
-        price:
+        prices:
           large: 95
           medium: 75
         cold: true
@@ -163,7 +163,7 @@ menu:
       - 
         id: 20
         item: "純釀烏梅汁"
-        price:
+        prices:
           large: 50
           medium: 40
         cold: true
@@ -174,7 +174,7 @@ menu:
         flavor:
           - "青蘋"
           - "野櫻梅"
-        price:
+        prices:
           large: 50
           medium: 40
         cold: true

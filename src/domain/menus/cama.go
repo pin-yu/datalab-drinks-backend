@@ -44,7 +44,7 @@ type Items struct {
 	ID     int      `yaml:"id" json:"id"`
 	Item   string   `yaml:"item" json:"item"`
 	Flavor []string `yaml:"flavor" json:"flavor"`
-	Price  Prices   `yaml:"price" json:"price"`
+	Prices Prices   `yaml:"prices" json:"prices"`
 	Cold   bool     `yaml:"cold" json:"cold"`
 	Hot    bool     `yaml:"hot" json:"hot"`
 }
