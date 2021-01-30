@@ -41,12 +41,11 @@ type Series struct {
 
 // Items contains four fields: Item, Price, Cold, Hot
 type Items struct {
-	ID     int      `yaml:"id" json:"id"`
-	Item   string   `yaml:"item" json:"item"`
-	Flavor []string `yaml:"flavor" json:"flavor"`
-	Prices Prices   `yaml:"prices" json:"prices"`
-	Cold   bool     `yaml:"cold" json:"cold"`
-	Hot    bool     `yaml:"hot" json:"hot"`
+	ID     int    `yaml:"id" json:"id"`
+	Item   string `yaml:"item" json:"item"`
+	Prices Prices `yaml:"prices" json:"prices"`
+	Cold   bool   `yaml:"cold" json:"cold"`
+	Hot    bool   `yaml:"hot" json:"hot"`
 }
 
 // Prices contains two fields: Large, Medium
