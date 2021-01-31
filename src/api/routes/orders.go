@@ -11,7 +11,8 @@ func addOrdersRoutes(rg *gin.RouterGroup) {
 	orders := rg.Group("/orders")
 
 	orders.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "get orders")
+		orders := services.ListOrders()
+		c.JSON(http.StatusOK, orders)
 	})
 
 	orders.POST("/", func(c *gin.Context) {

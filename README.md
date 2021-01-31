@@ -1,5 +1,7 @@
 # DataLab Drinks Backend
 
+## This Code is su*k and all sh*t, I'll put my best to refactor it!!
+
 ## Run the server
 
 ```bash
@@ -24,10 +26,9 @@ then the server starts listening on port 5000
                 {
                     "id": 1,
                     "item": "黑咖啡",
-                    "flavor": null,
-                    "price": {
-                        "large": 0,
-                        "medium": 0
+                    "prices": {
+                        "large": 60,
+                        "medium": 45
                     },
                     "cold": true,
                     "hot": true
@@ -35,10 +36,9 @@ then the server starts listening on port 5000
                 {
                     "id": 2,
                     "item": "特調咖啡",
-                    "flavor": null,
-                    "price": {
-                        "large": 0,
-                        "medium": 0
+                    "prices": {
+                        "large": 70,
+                        "medium": 55
                     },
                     "cold": true,
                     "hot": true
@@ -46,10 +46,9 @@ then the server starts listening on port 5000
                 {
                     "id": 3,
                     "item": "卡布奇諾",
-                    "flavor": null,
-                    "price": {
-                        "large": 0,
-                        "medium": 0
+                    "prices": {
+                        "large": 85,
+                        "medium": 65
                     },
                     "cold": true,
                     "hot": true
@@ -57,10 +56,9 @@ then the server starts listening on port 5000
                 {
                     "id": 4,
                     "item": "焦糖瑪琪朵",
-                    "flavor": null,
-                    "price": {
-                        "large": 0,
-                        "medium": 0
+                    "prices": {
+                        "large": 95,
+                        "medium": 75
                     },
                     "cold": true,
                     "hot": true
@@ -68,10 +66,9 @@ then the server starts listening on port 5000
                 {
                     "id": 5,
                     "item": "香草拿鐵",
-                    "flavor": null,
-                    "price": {
-                        "large": 0,
-                        "medium": 0
+                    "prices": {
+                        "large": 95,
+                        "medium": 75
                     },
                     "cold": true,
                     "hot": true
@@ -79,10 +76,9 @@ then the server starts listening on port 5000
                 {
                     "id": 6,
                     "item": "榛果拿鐵",
-                    "flavor": null,
-                    "price": {
-                        "large": 0,
-                        "medium": 0
+                    "prices": {
+                        "large": 95,
+                        "medium": 75
                     },
                     "cold": true,
                     "hot": true
@@ -90,10 +86,9 @@ then the server starts listening on port 5000
                 {
                     "id": 7,
                     "item": "海鹽焦糖拿鐵",
-                    "flavor": null,
-                    "price": {
-                        "large": 0,
-                        "medium": 0
+                    "prices": {
+                        "large": 95,
+                        "medium": 75
                     },
                     "cold": true,
                     "hot": true
@@ -101,10 +96,9 @@ then the server starts listening on port 5000
                 {
                     "id": 8,
                     "item": "黑糖拿鐵",
-                    "flavor": null,
-                    "price": {
-                        "large": 0,
-                        "medium": 0
+                    "prices": {
+                        "large": 95,
+                        "medium": 75
                     },
                     "cold": true,
                     "hot": true
@@ -112,10 +106,9 @@ then the server starts listening on port 5000
                 {
                     "id": 9,
                     "item": "蜂蜜拿鐵",
-                    "flavor": null,
-                    "price": {
-                        "large": 0,
-                        "medium": 0
+                    "prices": {
+                        "large": 95,
+                        "medium": 75
                     },
                     "cold": true,
                     "hot": true
@@ -123,10 +116,9 @@ then the server starts listening on port 5000
                 {
                     "id": 10,
                     "item": "拿鐵",
-                    "flavor": null,
-                    "price": {
-                        "large": 0,
-                        "medium": 0
+                    "prices": {
+                        "large": 85,
+                        "medium": 65
                     },
                     "cold": true,
                     "hot": true
@@ -139,8 +131,7 @@ then the server starts listening on port 5000
                 {
                     "id": 11,
                     "item": "蜂蜜鮮奶茶",
-                    "flavor": null,
-                    "price": {
+                    "prices": {
                         "large": 85,
                         "medium": 65
                     },
@@ -150,8 +141,7 @@ then the server starts listening on port 5000
                 {
                     "id": 12,
                     "item": "紅茶拿鐵",
-                    "flavor": null,
-                    "price": {
+                    "prices": {
                         "large": 80,
                         "medium": 60
                     },
@@ -161,8 +151,7 @@ then the server starts listening on port 5000
                 {
                     "id": 13,
                     "item": "皇家奶茶",
-                    "flavor": null,
-                    "price": {
+                    "prices": {
                         "large": 50,
                         "medium": 40
                     },
@@ -172,8 +161,7 @@ then the server starts listening on port 5000
                 {
                     "id": 14,
                     "item": "抹茶鮮奶",
-                    "flavor": null,
-                    "price": {
+                    "prices": {
                         "large": 80,
                         "medium": 65
                     },
@@ -183,8 +171,7 @@ then the server starts listening on port 5000
                 {
                     "id": 15,
                     "item": "芒果烤茶",
-                    "flavor": null,
-                    "price": {
+                    "prices": {
                         "large": 65,
                         "medium": 0
                     },
@@ -194,8 +181,7 @@ then the server starts listening on port 5000
                 {
                     "id": 16,
                     "item": "英倫早餐茶",
-                    "flavor": null,
-                    "price": {
+                    "prices": {
                         "large": 0,
                         "medium": 40
                     },
@@ -205,8 +191,7 @@ then the server starts listening on port 5000
                 {
                     "id": 17,
                     "item": "花草茶",
-                    "flavor": null,
-                    "price": {
+                    "prices": {
                         "large": 0,
                         "medium": 40
                     },
@@ -216,8 +201,7 @@ then the server starts listening on port 5000
                 {
                     "id": 18,
                     "item": "日式烘烤煎茶",
-                    "flavor": null,
-                    "price": {
+                    "prices": {
                         "large": 0,
                         "medium": 40
                     },
@@ -232,8 +216,7 @@ then the server starts listening on port 5000
                 {
                     "id": 19,
                     "item": "經典巧克力",
-                    "flavor": null,
-                    "price": {
+                    "prices": {
                         "large": 95,
                         "medium": 75
                     },
@@ -243,8 +226,7 @@ then the server starts listening on port 5000
                 {
                     "id": 20,
                     "item": "純釀烏梅汁",
-                    "flavor": null,
-                    "price": {
+                    "prices": {
                         "large": 50,
                         "medium": 40
                     },
@@ -253,12 +235,18 @@ then the server starts listening on port 5000
                 },
                 {
                     "id": 21,
-                    "item": "風味果醋",
-                    "flavor": [
-                        "青蘋",
-                        "野櫻梅"
-                    ],
-                    "price": {
+                    "item": "青蘋果醋",
+                    "prices": {
+                        "large": 50,
+                        "medium": 40
+                    },
+                    "cold": true,
+                    "hot": false
+                },
+                {
+                    "id": 22,
+                    "item": "野櫻梅果醋",
+                    "prices": {
                         "large": 50,
                         "medium": 40
                     },
@@ -304,11 +292,47 @@ then the server starts listening on port 5000
 ```
 
 
-- GET: `/v1/orders` (in development)
+- GET: `/v1/orders`
     - return the orders within `this week`!
-    - the new week is defined if time pasts at 12:00 Friday
-        - 11:59 Friday (this week)
-        - 12:01 Friday (next week)
+    - the new week is defined if time pasts at 16:00 Friday
+        - 15:59 Friday (this week)
+        - 16:00 Friday (next week)
+    - json
+        - Item should be a real item name instead of just a number, please forgive me about the hurry development
+        - currently, order_time is a wrong time
+
+
+```json
+{
+    "order_date": "2021-02-05T16:00:00+08:00",
+    "detail_orders": [
+        {
+            "order_by": "平郁",
+            "order_time": "0001-01-01T00:00:00Z",
+            "item": "1",
+            "size": "medium",
+            "sugar": "少糖",
+            "ice": "正常冰"
+        },
+        {
+            "order_by": "星緯",
+            "order_time": "0001-01-01T00:00:00Z",
+            "item": "21",
+            "size": "medium",
+            "sugar": "無糖",
+            "ice": "熱"
+        },
+        {
+            "order_by": "義路",
+            "order_time": "0001-01-01T00:00:00Z",
+            "item": "2",
+            "size": "medium",
+            "sugar": "少糖",
+            "ice": "bad ice id"
+        }
+    ]
+}
+```
 
 - POST: `/v1/oders`
     - require parameters
@@ -317,35 +341,10 @@ then the server starts listening on port 5000
     - if you want to update the order, just re-post
         - The server considers the value of `order_by` as key
 
-## Architecture
-Basically, this is a Domain Drive Design project. There are three layers in the architecture.
-
-- api
-    - routes
-        - every route should have one or more than one service.
-        - routes `should not` talk to the domain objects
-    - services
-        - services are the place where to talk to the domain objects
-
-- domain
-    - menus
-        - handle the menus entity
-    - orders
-        - handle the orders entity
-    - users (I not sure whether we need this)
-        - handle the users entity
-- infra
-    - domain logic `should not` appear here.
-    - orm
-        - migration or simple database communication
-
-- suggestion
-    - please follow the design rules
-    - each route has one or more than one service
-    - service can use functions in domain package
-    - domain can use functions in infra package
-    - `all the logic should place in domain package`
+## Architecture (outdate)
+Basically, this is a Domain Drive Design project.
 
 ## TODO:
+- order validation
 - get history orders, not only just get this week's order
 - complete test cases

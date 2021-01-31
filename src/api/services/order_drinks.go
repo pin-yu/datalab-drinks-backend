@@ -6,7 +6,8 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/pinyu/datalab-drinks-backend/src/infra/orm"
+	"github.com/pinyu/datalab-drinks-backend/src/infrastructure/orm"
+	"github.com/pinyu/datalab-drinks-backend/src/infrastructure/orm/schemas"
 )
 
 // OrderDrinks returns a http result and a json message
@@ -18,13 +19,13 @@ func OrderDrinks(c *gin.Context) (int, string) {
 	return http.StatusOK, "drinks are ordered"
 }
 
-func parseOrderQuery(c *gin.Context) *orm.Order {
+func parseOrderQuery(c *gin.Context) *schemas.Order {
 	user := c.Query("order_by")
 	itemID := parseUint8(c.Query("item_id"))
 	sugar := parseUint8(c.Query("sugar"))
 	ice := parseUint8(c.Query("ice"))
 
-	order := &orm.Order{
+	order := &schemas.Order{
 		OrderBy: user,
 		Item:    itemID,
 		Sugar:   sugar,

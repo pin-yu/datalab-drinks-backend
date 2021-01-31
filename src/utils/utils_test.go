@@ -1,15 +1,36 @@
 package utils
 
-import "testing"
+import (
+	"testing"
+	"time"
+)
 
-func TestLastFridayNoon(t *testing.T) {
-	lastFridayNoon := LastFridayNoon()
-	if lastFridayNoon.Weekday() != 5 {
-		t.Error("bad weekday in LastFridayNoon")
+func TestOrderIntervalStartTime(t *testing.T) {
+	const weekday = 5
+	const drinksDeadlineHour = 16
+
+	orderIntervalStartTime := OrderIntervalStartTime()
+	if orderIntervalStartTime.Weekday() != weekday {
+		t.Error("bad weekday in OrderIntervalStartTime")
 	}
 
-	if lastFridayNoon.Hour() != 12 {
-		t.Error("bad hour in LastFridayNoon")
+	if orderIntervalStartTime.Hour() != drinksDeadlineHour {
+		t.Error("bad hour in OrderIntervalStartTime")
+	}
+}
+
+func TestOrderIntervalEndTime(t *testing.T) {
+
+	orderIntervalStartTime := OrderIntervalStartTime()
+	orderIntervalEndTime := OrderIntervalEndTime()
+
+	weekDuration, err := time.ParseDuration("168h")
+	if err != nil {
+		t.Error("bad ParseDuration in TestOrderIntervalEndTime")
+	}
+
+	if orderIntervalEndTime.Sub(orderIntervalStartTime) != weekDuration {
+		t.Error("bad time in OrderIntervalEndTime")
 	}
 }
 

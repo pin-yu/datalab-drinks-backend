@@ -170,10 +170,15 @@ menu:
         hot: true
       - 
         id: 21
-        item: "風味果醋"
-        flavor:
-          - "青蘋"
-          - "野櫻梅"
+        item: "青蘋果醋"
+        prices:
+          large: 50
+          medium: 40
+        cold: true
+        hot: false
+      - 
+        id: 22
+        item: "野櫻梅果醋"
         prices:
           large: 50
           medium: 40
