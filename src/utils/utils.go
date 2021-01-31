@@ -11,7 +11,7 @@ import (
 // currently, meeting day is on Friday
 const (
 	meetingDay         = 5
-	drinksDeadlineHour = 12
+	drinksDeadlineHour = 16
 	daysInWeek         = 7
 )
 
@@ -33,8 +33,8 @@ func GetBasePath() string {
 	return basepath
 }
 
-// LastFridayNoon returns the time object of the last friday noon
-func LastFridayNoon() *time.Time {
+// OrderIntervalStartTime returns the start time of the order interval in time object
+func OrderIntervalStartTime() time.Time {
 	now := time.Now()
 
 	hour := int(now.Hour())
@@ -46,7 +46,21 @@ func LastFridayNoon() *time.Time {
 	yy, mm, dd := lastFriday.Date()
 	lastFridayNoon := time.Date(yy, mm, dd, drinksDeadlineHour, 0, 0, 0, time.Local)
 
-	return &lastFridayNoon
+	return lastFridayNoon
+}
+
+// OrderIntervalEndTime returns the end time of the order interval in time object
+func OrderIntervalEndTime() time.Time {
+	startTime := OrderIntervalStartTime()
+
+	const years = 0
+	const months = 0
+	const days = 7
+
+	// simply add 7 days in to start time
+	endTime := startTime.AddDate(years, months, days)
+
+	return endTime
 }
 
 // calculate the day numbers from last friday to now

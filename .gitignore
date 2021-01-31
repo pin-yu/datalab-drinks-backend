@@ -25,6 +25,9 @@ main
 /Godeps/
 
 # database
-src/infra/database
+src/infrastructure/database
+
+# temporary ignore
+dockerfile
 
 # End of https://www.toptal.com/developers/gitignore/api/go

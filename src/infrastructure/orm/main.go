@@ -10,11 +10,11 @@ import (
 	"github.com/pinyu/datalab-drinks-backend/src/utils"
 )
 
-var dbSingleton *gorm.DB
+var singletonConnection *gorm.DB
 
 var (
 	basePath = utils.GetBasePath()
-	dbPath   = filepath.Join(basePath, "../infra/database/dev.db")
+	dbPath   = filepath.Join(basePath, "../infrastructure/database/dev.db")
 )
 
 // MigrateDB will migrate the database
@@ -27,18 +27,18 @@ func DropDB() {
 	dropOrder()
 }
 
-func newDB() *gorm.DB {
+func newDBConnection() *gorm.DB {
 	// if db has been instantiated, just return it (singleton)
-	if dbSingleton != nil {
-		return dbSingleton
+	if singletonConnection != nil {
+		return singletonConnection
 	}
 
 	// for the singleton db, declare error instead of using :=
 	var err error
-	dbSingleton, err = gorm.Open(sqlite.Open(dbPath), &gorm.Config{})
+	singletonConnection, err = gorm.Open(sqlite.Open(dbPath), &gorm.Config{})
 	if err != nil {
 		log.Fatal("failed to connect database")
 	}
 
-	return dbSingleton
+	return singletonConnection
 }

@@ -9,7 +9,7 @@ import (
 	"flag"
 
 	"github.com/pinyu/datalab-drinks-backend/src/api/routes"
-	"github.com/pinyu/datalab-drinks-backend/src/infra/orm"
+	"github.com/pinyu/datalab-drinks-backend/src/infrastructure/orm"
 )
 
 var migrateFlag bool
