@@ -3,6 +3,7 @@ package orders
 import (
 	"time"
 
+	"github.com/pinyu/datalab-drinks-backend/src/domain/menus"
 	"github.com/pinyu/datalab-drinks-backend/src/infrastructure/orm"
 	"github.com/pinyu/datalab-drinks-backend/src/utils"
 )
@@ -15,17 +16,17 @@ type Orders struct {
 
 // DetailOrder .
 type DetailOrder struct {
-	OrderBy   string    `json:"order_by"`
-	OrderTime time.Time `json:"order_time"`
-	Item      string    `json:"item"`
-	Size      string    `json:"size"`
-	Sugar     string    `json:"sugar"`
-	Ice       string    `json:"ice"`
+	OrderBy   string `json:"order_by"`
+	OrderTime string `json:"order_time"`
+	Item      string `json:"item"`
+	Size      string `json:"size"`
+	Sugar     string `json:"sugar"`
+	Ice       string `json:"ice"`
 }
 
 // OrderKey .
 type OrderKey struct {
-	Item  string `json:"item"`
+	Item  uint8  `json:"item"`
 	Size  string `json:"size"`
 	Sugar string `json:"sugar"`
 	Ice   string `json:"ice"`
@@ -61,11 +62,13 @@ func GetOrders() *Orders {
 	}
 }
 
+var itemMap = menus.GetItemMap()
+
 func toDetailOrder(weekOrder *orm.WeekOrder) *DetailOrder {
 	return &DetailOrder{
 		OrderBy:   weekOrder.OrderBy,
 		OrderTime: weekOrder.UpdatedAt,
-		Item:      weekOrder.Item,
+		Item:      itemMap[weekOrder.Item],
 		Size:      weekOrder.Size,
 		Sugar:     sugarIDToLabel(weekOrder.Sugar),
 		Ice:       iceIDToLabel(weekOrder.Ice),

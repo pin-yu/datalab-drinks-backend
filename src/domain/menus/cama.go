@@ -66,3 +66,17 @@ func GetMenus() *CamaMenu {
 
 	return menus
 }
+
+// GetItemMap returns ItemMap, which key is itemID and value is itemName
+func GetItemMap() map[uint8]string {
+	itemMap := make(map[uint8]string)
+
+	menus := GetMenus()
+
+	for _, menu := range menus.Menu {
+		for _, item := range menu.Items {
+			itemMap[uint8(item.ID)] = item.Item
+		}
+	}
+	return itemMap
+}

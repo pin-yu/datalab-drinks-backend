@@ -2,7 +2,6 @@ package orm
 
 import (
 	"log"
-	"time"
 
 	"github.com/pinyu/datalab-drinks-backend/src/infrastructure/orm/schemas"
 	"github.com/pinyu/datalab-drinks-backend/src/utils"
@@ -32,20 +31,22 @@ func dropOrder() {
 // WeekOrder is
 type WeekOrder struct {
 	OrderBy   string
-	Item      string
+	Item      uint8
 	Size      string
 	Sugar     uint8
 	Ice       uint8
-	UpdatedAt time.Time
+	UpdatedAt string
 }
 
-// GetWeekOrder select order_by, item, size, ice, sugar, MAX(updated_at) from orders where updated_at > "2021-01-30 13-00-00" group by order_by;
+// GetWeekOrders select order_by, item, size, ice, sugar, MAX(updated_at) from orders where updated_at > "2021-01-30 13-00-00" group by order_by;
 func GetWeekOrders() *[]WeekOrder {
 	db := newDBConnection()
 
 	weekOrders := &[]WeekOrder{}
 
-	db.Debug().Table("orders").Select("order_by, item, size, sugar, ice, Max(updated_at)").Where("updated_at > ?", utils.OrderIntervalStartTime()).Group("order_by").Find(weekOrders)
+	db.Debug().Table("orders").Select("order_by, item, size, sugar, ice, Max(updated_at) as updated_at").Where("updated_at > ?", utils.OrderIntervalStartTime()).Group("order_by").Find(weekOrders)
+
+	log.Println((*weekOrders)[0].UpdatedAt)
 
 	return weekOrders
 }
