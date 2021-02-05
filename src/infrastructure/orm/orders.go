@@ -46,8 +46,6 @@ func GetWeekOrders() *[]WeekOrder {
 
 	db.Debug().Table("orders").Select("order_by, item, size, sugar, ice, Max(updated_at) as updated_at").Where("updated_at > ?", utils.OrderIntervalStartTime()).Group("order_by").Find(weekOrders)
 
-	log.Println((*weekOrders)[0].UpdatedAt)
-
 	return weekOrders
 }
 
