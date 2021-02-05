@@ -104,8 +104,10 @@ func iceIDToLabel(ID uint8) string {
 	case 1:
 		return "熱"
 	case 2:
-		return "少冰"
+		return "去冰"
 	case 3:
+		return "少冰"
+	case 4:
 		return "正常冰"
 	default:
 		return "bad ice id"

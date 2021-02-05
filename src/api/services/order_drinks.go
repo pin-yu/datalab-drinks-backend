@@ -20,16 +20,19 @@ func OrderDrinks(c *gin.Context) (int, string) {
 }
 
 func parseOrderQuery(c *gin.Context) *schemas.Order {
-	user := c.Query("order_by")
-	itemID := parseUint8(c.Query("item_id"))
-	sugar := parseUint8(c.Query("sugar"))
-	ice := parseUint8(c.Query("ice"))
+	var result struct {
+		OrderBy string `json:"order_by"`
+		ItemID  uint   `json:"item_id"`
+		Sugar   uint   `json:"sugar"`
+		Ice     uint   `json:"ice"`
+	}
+	c.Bind(&result)
 
 	order := &schemas.Order{
-		OrderBy: user,
-		Item:    itemID,
-		Sugar:   sugar,
-		Ice:     ice,
+		OrderBy: result.OrderBy,
+		Item:    uint8(result.ItemID),
+		Sugar:   uint8(result.Sugar),
+		Ice:     uint8(result.Ice),
 	}
 	return order
 }
