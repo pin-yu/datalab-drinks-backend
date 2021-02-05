@@ -14,7 +14,7 @@ var singletonConnection *gorm.DB
 
 var (
 	basePath = utils.GetBasePath()
-	dbPath   = filepath.Join(basePath, "../infrastructure/database/dev.db")
+	dbPath   = filepath.Join(basePath, "../infrastructure/local/dev.db")
 )
 
 // MigrateDB will migrate the database
