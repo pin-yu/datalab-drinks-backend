@@ -25,7 +25,7 @@ main
 /Godeps/
 
 # database
-src/infrastructure/database
+src/infrastructure/local
 
 # temporary ignore
 dockerfile
