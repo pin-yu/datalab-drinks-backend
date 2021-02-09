@@ -1,21 +1,20 @@
 package routes
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
-	"github.com/pinyu/datalab-drinks-backend/src/api/services"
+	"github.com/pinyu/datalab-drinks-backend/src/application/services"
 )
 
 func addOrdersRoutes(rg *gin.RouterGroup) {
 	orders := rg.Group("/orders")
 
 	orders.GET("/", func(c *gin.Context) {
-		orders := services.ListOrders()
-		c.JSON(http.StatusOK, orders)
+		res := services.ListOrders()
+		c.JSON(res.Resolve())
 	})
 
 	orders.POST("/", func(c *gin.Context) {
-		c.JSON(services.OrderDrinks(c))
+		res := services.OrderDrinks(c)
+		c.JSON(res.Resolve())
 	})
 }

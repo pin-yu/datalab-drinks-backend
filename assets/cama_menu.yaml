@@ -4,206 +4,188 @@ menu:
     series: "現烘義式"
     items:
       - 
-        id: 1
+        item_id: 1
         item: "黑咖啡"
-        prices:
-          large: 60
-          medium: 45
+        large_price: 60
+        medium_price: 45
         cold: true
         hot: true
       -
-        id: 2
+        item_id: 2
         item: "特調咖啡"
-        prices:
-          large: 70
-          medium: 55
+        large_price: 70
+        medium_price: 55
         cold: true
         hot: true
       -
-        id: 3
+        item_id: 3
         item: "卡布奇諾"
-        prices:
-          large: 85
-          medium: 65
+        large_price: 85
+        medium_price: 65
         cold: true
         hot: true
       -
-        id: 4
+        item_id: 4
         item: "焦糖瑪琪朵"
-        prices:
-          large: 95
-          medium: 75
+        large_price: 95
+        medium_price: 75
         cold: true
         hot: true
       -
-        id: 5
+        item_id: 5
         item: "香草拿鐵"
-        prices:
-          large: 95
-          medium: 75
+        large_price: 95
+        medium_price: 75
         cold: true
         hot: true
       -
-        id: 6
+        item_id: 6
         item: "榛果拿鐵"
-        prices:
-          large: 95
-          medium: 75
+        large_price: 95
+        medium_price: 75
         cold: true
         hot: true
       -
-        id: 7
+        item_id: 7
         item: "海鹽焦糖拿鐵"
-        prices:
-          large: 95
-          medium: 75
+        large_price: 95
+        medium_price: 75
         cold: true
         hot: true
       -
-        id: 8
+        item_id: 8
         item: "黑糖拿鐵"
-        prices:
-          large: 95
-          medium: 75
+        large_price: 95
+        medium_price: 75
         cold: true
         hot: true
       -
-        id: 9
+        item_id: 9
         item: "蜂蜜拿鐵"
-        prices:
-          large: 95
-          medium: 75
+        large_price: 95
+        medium_price: 75
         cold: true
         hot: true
       -
-        id: 10
+        item_id: 10
         item: "拿鐵"
-        prices:
-          large: 85
-          medium: 65
+        large_price: 85
+        medium_price: 65
         cold: true
         hot: true
   -
     series: "精選茶飲"
     items:
       - 
-        id: 11
+        item_id: 11
         item: "蜂蜜鮮奶茶"
-        prices:
-          large: 85
-          medium: 65
+        large_price: 85
+        medium_price: 65
         cold: true
         hot: true
       - 
-        id: 12
+        item_id: 12
         item: "紅茶拿鐵"
-        prices:
-          large: 80
-          medium: 60
+        large_price: 80
+        medium_price: 60
         cold: true
         hot: true
       - 
-        id: 13
+        item_id: 13
         item: "皇家奶茶"
-        prices:
-          large: 50
-          medium: 40
+        large_price: 50
+        medium_price: 40
         cold: true
         hot: true
       - 
-        id: 14
+        item_id: 14
         item: "抹茶鮮奶"
-        prices:
-          large: 80
-          medium: 65
+        large_price: 80
+        medium_price: 65
         cold: true
         hot: true
       - 
-        id: 15
+        item_id: 15
         item: "芒果烤茶"
-        prices:
-          large: 65
-          medium: null
+        large_price: 65
+        medium_price: null
         cold: true
         hot: true
       - 
-        id: 16
+        item_id: 16
         item: "英倫早餐茶"
-        prices:
-          large: null
-          medium: 40
+        large_price: null
+        medium_price: 40
         cold: true
         hot: true
       - 
-        id: 17
+        item_id: 17
         item: "花草茶"
-        prices:
-          large: null
-          medium: 40
+        large_price: null
+        medium_price: 40
         cold: true
         hot: true
       - 
-        id: 18
+        item_id: 18
         item: "日式烘烤煎茶"
-        prices:
-          medium: 40
+        large_price: null
+        medium_price: 40
         cold: true
         hot: true
   -
     series: "其他飲品"
     items:
       - 
-        id: 19
+        item_id: 19
         item: "經典巧克力"
-        prices:
-          large: 95
-          medium: 75
+        large_price: 95
+        medium_price: 75
         cold: true
         hot: true
       - 
-        id: 20
+        item_id: 20
         item: "純釀烏梅汁"
-        prices:
-          large: 50
-          medium: 40
+        large_price: 50
+        medium_price: 40
         cold: true
         hot: true
       - 
-        id: 21
+        item_id: 21
         item: "青蘋果醋"
-        prices:
-          large: 50
-          medium: 40
+        large_price: 50
+        medium_price: 40
         cold: true
         hot: false
       - 
-        id: 22
+        item_id: 22
         item: "野櫻梅果醋"
-        prices:
-          large: 50
-          medium: 40
+        large_price: 50
+        medium_price: 40
         cold: true
         hot: false
 sugar:
   - 
-    id: 1
-    tag: "無糖"
+    sugar_id: 1
+    sugar_tag: "無糖"
   -
-    id: 2
-    tag: "微糖"
+    sugar_id: 2
+    sugar_tag: "微糖"
   -
-    id: 3
-    tag: "半糖"
+    sugar_id: 3
+    sugar_tag: "半糖"
   -
-    id: 4
-    tag: "正常糖"
+    sugar_id: 4
+    sugar_tag: "正常糖"
 ice:
   -
-    id: 1
-    tag: "熱"
+    ice_id: 1
+    ice_tag: "熱"
   -
-    id: 2
-    tag: "少冰"
+    ice_id: 2
+    ice_tag: "去冰"
   -
-    id: 3
-    tag: "正常冰"
+    ice_id: 3
+    ice_tag: "少冰"
+  -
+    ice_id: 4
+    ice_tag: "正常冰"

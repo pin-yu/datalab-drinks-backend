@@ -8,8 +8,8 @@ package main
 import (
 	"flag"
 
-	"github.com/pinyu/datalab-drinks-backend/src/api/routes"
-	"github.com/pinyu/datalab-drinks-backend/src/infrastructure/orm"
+	"github.com/pinyu/datalab-drinks-backend/src/application/services"
+	"github.com/pinyu/datalab-drinks-backend/src/interface/routes"
 )
 
 var migrateFlag bool
@@ -25,9 +25,9 @@ func main() {
 	parseFlag()
 
 	if migrateFlag {
-		orm.MigrateDB()
+		services.MigrateTable()
 	} else if dropFlag {
-		orm.DropDB()
+		services.DropTable()
 	} else {
 		// starts the server
 		routes.Run()
