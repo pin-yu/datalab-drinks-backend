@@ -1,350 +1,125 @@
 # DataLab Drinks Backend
 
-## This Code is su*k and all sh*t, I'll put my best to refactor it!!
-
 ## Run the server
 
 ```bash
-go run src/main.go
+GIN_MODE=release go run src/main.go
 ```
 
-then the server starts listening on port 5000
+The server will start listening on port 5000
 
 ## API
 
-- GET: `/v1/menus` (done)
+- GET: `/v1/menus`
     - return Cama's menu in json format
-
 
 ```json
 {
-    "menu_version": "2020W",
-    "menu": [
-        {
-            "series": "現烘義式",
-            "items": [
-                {
-                    "id": 1,
-                    "item": "黑咖啡",
-                    "prices": {
-                        "large": 60,
-                        "medium": 45
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 2,
-                    "item": "特調咖啡",
-                    "prices": {
-                        "large": 70,
-                        "medium": 55
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 3,
-                    "item": "卡布奇諾",
-                    "prices": {
-                        "large": 85,
-                        "medium": 65
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 4,
-                    "item": "焦糖瑪琪朵",
-                    "prices": {
-                        "large": 95,
-                        "medium": 75
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 5,
-                    "item": "香草拿鐵",
-                    "prices": {
-                        "large": 95,
-                        "medium": 75
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 6,
-                    "item": "榛果拿鐵",
-                    "prices": {
-                        "large": 95,
-                        "medium": 75
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 7,
-                    "item": "海鹽焦糖拿鐵",
-                    "prices": {
-                        "large": 95,
-                        "medium": 75
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 8,
-                    "item": "黑糖拿鐵",
-                    "prices": {
-                        "large": 95,
-                        "medium": 75
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 9,
-                    "item": "蜂蜜拿鐵",
-                    "prices": {
-                        "large": 95,
-                        "medium": 75
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 10,
-                    "item": "拿鐵",
-                    "prices": {
-                        "large": 85,
-                        "medium": 65
-                    },
-                    "cold": true,
-                    "hot": true
-                }
-            ]
-        },
-        {
-            "series": "精選茶飲",
-            "items": [
-                {
-                    "id": 11,
-                    "item": "蜂蜜鮮奶茶",
-                    "prices": {
-                        "large": 85,
-                        "medium": 65
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 12,
-                    "item": "紅茶拿鐵",
-                    "prices": {
-                        "large": 80,
-                        "medium": 60
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 13,
-                    "item": "皇家奶茶",
-                    "prices": {
-                        "large": 50,
-                        "medium": 40
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 14,
-                    "item": "抹茶鮮奶",
-                    "prices": {
-                        "large": 80,
-                        "medium": 65
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 15,
-                    "item": "芒果烤茶",
-                    "prices": {
-                        "large": 65,
-                        "medium": 0
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 16,
-                    "item": "英倫早餐茶",
-                    "prices": {
-                        "large": 0,
-                        "medium": 40
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 17,
-                    "item": "花草茶",
-                    "prices": {
-                        "large": 0,
-                        "medium": 40
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 18,
-                    "item": "日式烘烤煎茶",
-                    "prices": {
-                        "large": 0,
-                        "medium": 40
-                    },
-                    "cold": true,
-                    "hot": true
-                }
-            ]
-        },
-        {
-            "series": "其他飲品",
-            "items": [
-                {
-                    "id": 19,
-                    "item": "經典巧克力",
-                    "prices": {
-                        "large": 95,
-                        "medium": 75
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 20,
-                    "item": "純釀烏梅汁",
-                    "prices": {
-                        "large": 50,
-                        "medium": 40
-                    },
-                    "cold": true,
-                    "hot": true
-                },
-                {
-                    "id": 21,
-                    "item": "青蘋果醋",
-                    "prices": {
-                        "large": 50,
-                        "medium": 40
-                    },
-                    "cold": true,
-                    "hot": false
-                },
-                {
-                    "id": 22,
-                    "item": "野櫻梅果醋",
-                    "prices": {
-                        "large": 50,
-                        "medium": 40
-                    },
-                    "cold": true,
-                    "hot": false
-                }
-            ]
-        }
-    ],
-    "sugar": [
-        {
-            "id": "1",
-            "tag": "無糖"
-        },
-        {
-            "id": "2",
-            "tag": "微糖"
-        },
-        {
-            "id": "3",
-            "tag": "半糖"
-        },
-        {
-            "id": "4",
-            "tag": "正常糖"
-        }
-    ],
-    "ice": [
-        {
-            "id": "1",
-            "tag": "熱"
-        },
-        {
-            "id": "2",
-            "tag": "少冰"
-        },
-        {
-            "id": "3",
-            "tag": "正常冰"
-        }
-    ]
+    "status_message": "ok",
+    "payload": {
+        "menu_version": "2020W",
+        "menu": [
+            {
+                "series": "現烘義式",
+                "items": [
+                    {
+                        "item_id": 1,
+                        "item": "黑咖啡",
+                        "medium_price": 45,
+                        "large_price": 60,
+                        "cold": true,
+                        "hot": true
+                    }
+                ]
+            }
+        ],
+        "sugar": [
+            {
+                "sugar_id": 1,
+                "sugar_tag": "無糖"
+            },
+            {
+                "sugar_id": 2,
+                "sugar_tag": "微糖"
+            },
+            {
+                "sugar_id": 3,
+                "sugar_tag": "半糖"
+            },
+            {
+                "sugar_id": 4,
+                "sugar_tag": "正常糖"
+            }
+        ],
+        "ice": [
+            {
+                "ice_id": 1,
+                "ice_tag": "熱"
+            },
+            {
+                "ice_id": 2,
+                "ice_tag": "去冰"
+            },
+            {
+                "ice_id": 3,
+                "ice_tag": "少冰"
+            },
+            {
+                "ice_id": 4,
+                "ice_tag": "正常冰"
+            }
+        ]
+    }
 }
 ```
-
 
 - GET: `/v1/orders`
     - return the orders within `this week`!
     - the new week is defined if time pasts at 16:00 Friday
         - 15:59 Friday (this week)
         - 16:00 Friday (next week)
-    - json
-        - Item should be a real item name instead of just a number, please forgive me about the hurry development
-        - currently, order_time is a wrong time
-
+    - in json format
 
 ```json
 {
-    "order_date": "2021-02-05T16:00:00+08:00",
-    "detail_orders": [
-        {
-            "order_by": "平郁",
-            "order_time": "0001-01-01T00:00:00Z",
-            "item": "1",
-            "size": "medium",
-            "sugar": "少糖",
-            "ice": "正常冰"
-        },
-        {
-            "order_by": "星緯",
-            "order_time": "0001-01-01T00:00:00Z",
-            "item": "21",
-            "size": "medium",
-            "sugar": "無糖",
-            "ice": "熱"
-        },
-        {
-            "order_by": "義路",
-            "order_time": "0001-01-01T00:00:00Z",
-            "item": "2",
-            "size": "medium",
-            "sugar": "少糖",
-            "ice": "bad ice id"
-        }
-    ]
+    "status_message": "ok",
+    "payload": {
+        "week_orders": [
+            {
+                "order_by": "平郁",
+                "item": "拿鐵",
+                "price": 65,
+                "sugar_tag": "半糖",
+                "ice_tag": "去冰"
+            },
+            {
+                "order_by": "義路",
+                "item": "青蘋果醋",
+                "price": 50,
+                "sugar_tag": "無糖",
+                "ice_tag": "少冰"
+            }
+        ]
+    }
 }
 ```
 
 - POST: `/v1/oders`
-    - require parameters
-        - `/v1/orders?order_by=平郁&item_id=1&sugar=3&ice=4`
-
+    - requires json body
     - if you want to update the order, just re-post
         - The server considers the value of `order_by` as key
 
-## Architecture (outdate)
-Basically, this is a Domain Drive Design project.
+```json
+{
+    "order_by": "平郁",
+    "size": "medium",
+    "item_id": 10,
+    "sugar_id": 3,
+    "ice_id": 2
+}
+```
 
 ## TODO:
-- order validation
-- get history orders, not only just get this week's order
-- complete test cases
+- order validation (done)
+- get history orders, not only just get this week's order (in development)
+- complete test cases (in development)
