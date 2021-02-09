@@ -1,4 +1,4 @@
-package orm
+package persistence
 
 import (
 	"log"
@@ -10,35 +10,25 @@ import (
 	"github.com/pinyu/datalab-drinks-backend/src/utils"
 )
 
-var singletonConnection *gorm.DB
+var singletonDriver *gorm.DB
 
 var (
 	basePath = utils.GetBasePath()
 	dbPath   = filepath.Join(basePath, "../infrastructure/local/dev.db")
 )
 
-// MigrateDB will migrate the database
-func MigrateDB() {
-	migrateOrder()
-}
-
-// DropDB will drop the database
-func DropDB() {
-	dropOrder()
-}
-
-func newDBConnection() *gorm.DB {
+func newDBDriver() *gorm.DB {
 	// if db has been instantiated, just return it (singleton)
-	if singletonConnection != nil {
-		return singletonConnection
+	if singletonDriver != nil {
+		return singletonDriver
 	}
 
 	// for the singleton db, declare error instead of using :=
 	var err error
-	singletonConnection, err = gorm.Open(sqlite.Open(dbPath), &gorm.Config{})
+	singletonDriver, err = gorm.Open(sqlite.Open(dbPath), &gorm.Config{})
 	if err != nil {
 		log.Fatal("failed to connect database")
 	}
 
-	return singletonConnection
+	return singletonDriver
 }
