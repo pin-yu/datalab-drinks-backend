@@ -85,6 +85,7 @@ GIN_MODE=test go test ./...
         - 15:59 Friday (this week)
         - 16:00 Friday (next week)
     - in json format
+    - order_time follows RFC3339 format
 
 ```json
 {
@@ -92,18 +93,22 @@ GIN_MODE=test go test ./...
     "payload": {
         "week_orders": [
             {
-                "order_by": "平郁",
-                "item": "拿鐵",
-                "price": 65,
-                "sugar_tag": "半糖",
-                "ice_tag": "去冰"
+                "order_by": "王平郁",
+                "item": "紅茶拿鐵",
+                "size": "large",
+                "price": 80,
+                "sugar_tag": "微糖",
+                "ice_tag": "熱",
+                "order_time": "2021-02-10T23:46:49+08:00"
             },
             {
-                "order_by": "義路",
-                "item": "青蘋果醋",
-                "price": 50,
+                "order_by": "何星緯",
+                "item": "特調咖啡",
+                "size": "large",
+                "price": 70,
                 "sugar_tag": "無糖",
-                "ice_tag": "少冰"
+                "ice_tag": "熱",
+                "order_time": "2021-02-10T23:47:23+08:00"
             }
         ]
     }
