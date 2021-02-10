@@ -8,7 +8,7 @@ GIN_MODE=release go run src/main.go
 
 The server will start listening on port 5000
 
-## Run the integration test
+## Run the unit and integration test
 
 ```bash
 GIN_MODE=test go test ./...
