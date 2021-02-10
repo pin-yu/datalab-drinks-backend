@@ -95,6 +95,7 @@ func (o *orderRepository) QueryWeekOrders() ([]entities.Order, error) {
 	db := newDBDriver()
 
 	orders := []entities.Order{}
+
 	err := db.Select("id, order_by, item_id, size, sugar_id, ice_id, Max(order_time) as order_time").Where("order_time > ?", utils.OrderIntervalStartTime().Unix()).Group("order_by").Order("Max(order_time)").Preload("Item").Preload("Sugar").Preload("Ice").Find(&orders).Error
 	if err != nil {
 		return nil, fmt.Errorf("error occurs in QueryWeekOrders: %w", err)
