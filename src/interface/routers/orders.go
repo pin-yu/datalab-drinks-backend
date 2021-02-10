@@ -1,11 +1,11 @@
-package routes
+package routers
 
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/pinyu/datalab-drinks-backend/src/application/services"
 )
 
-func addOrdersRoutes(rg *gin.RouterGroup) {
+func addOrdersRouter(rg *gin.RouterGroup) {
 	orders := rg.Group("/orders")
 
 	orders.GET("/", func(c *gin.Context) {

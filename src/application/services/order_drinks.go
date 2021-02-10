@@ -43,7 +43,7 @@ func parseOrderBody(c *gin.Context) (*requests.OrderRequestBody, error) {
 
 	err := c.Bind(&orderRequest)
 	if err != nil || !orderRequest.IsSchemaValid() {
-		return nil, fmt.Errorf("bad order request body schema")
+		return nil, fmt.Errorf("bad schema of order request body")
 	}
 
 	return &orderRequest, nil

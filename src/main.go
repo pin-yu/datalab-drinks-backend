@@ -9,7 +9,7 @@ import (
 	"flag"
 
 	"github.com/pinyu/datalab-drinks-backend/src/application/services"
-	"github.com/pinyu/datalab-drinks-backend/src/interface/routes"
+	"github.com/pinyu/datalab-drinks-backend/src/interface/routers"
 )
 
 var migrateFlag bool
@@ -30,6 +30,6 @@ func main() {
 		services.DropTable()
 	} else {
 		// starts the server
-		routes.Run()
+		routers.Run()
 	}
 }

@@ -2,20 +2,22 @@ package persistence
 
 import (
 	"log"
-	"path/filepath"
 
+	"github.com/pinyu/datalab-drinks-backend/src/config"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
-
-	"github.com/pinyu/datalab-drinks-backend/src/utils"
 )
 
 var singletonDriver *gorm.DB
 
 var (
-	basePath = utils.GetBasePath()
-	dbPath   = filepath.Join(basePath, "../infrastructure/local/dev.db")
+	dbPath = config.GetDBPath()
 )
+
+// DbPath returns current db path
+func DbPath() string {
+	return dbPath
+}
 
 func newDBDriver() *gorm.DB {
 	// if db has been instantiated, just return it (singleton)
@@ -25,6 +27,7 @@ func newDBDriver() *gorm.DB {
 
 	// for the singleton db, declare error instead of using :=
 	var err error
+
 	singletonDriver, err = gorm.Open(sqlite.Open(dbPath), &gorm.Config{})
 	if err != nil {
 		log.Fatal("failed to connect database")

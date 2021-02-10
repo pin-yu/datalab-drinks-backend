@@ -8,6 +8,12 @@ GIN_MODE=release go run src/main.go
 
 The server will start listening on port 5000
 
+## Run the integration test
+
+```bash
+GIN_MODE=test go test ./...
+```
+
 ## API
 
 - GET: `/v1/menus`
@@ -121,5 +127,8 @@ The server will start listening on port 5000
 
 ## TODO:
 - order validation (done)
+- complete integrateion test (done)
+- return an order report (in development)
+- dockerize (in development)
 - get history orders, not only just get this week's order (in development)
-- complete test cases (in development)
+

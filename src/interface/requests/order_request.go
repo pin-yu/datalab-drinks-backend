@@ -1,5 +1,7 @@
 package requests
 
+import "log"
+
 // OrderRequestBody models order request body
 type OrderRequestBody struct {
 	OrderBy string `json:"order_by"`
@@ -11,6 +13,7 @@ type OrderRequestBody struct {
 
 // IsSchemaValid returs false if there is wrong schema
 func (o *OrderRequestBody) IsSchemaValid() bool {
+	log.Println(o)
 	if o.OrderBy == "" {
 		return false
 	}
