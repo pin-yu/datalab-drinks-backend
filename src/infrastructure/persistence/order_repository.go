@@ -3,6 +3,7 @@ package persistence
 import (
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/pinyu/datalab-drinks-backend/src/domain/entities"
 	"github.com/pinyu/datalab-drinks-backend/src/domain/repositories"
@@ -24,7 +25,7 @@ func NewOrderRepository() repositories.OrderRepository {
 func (o *orderRepository) Exist(orderBy string) bool {
 	db := newDBDriver()
 
-	result := db.Where("order_by = ? AND created_at > ?", orderBy, utils.OrderIntervalStartTime()).Find(&entities.Order{})
+	result := db.Where("order_by = ? AND order_time > ?", orderBy, utils.OrderIntervalStartTime().Unix()).Find(&entities.Order{})
 
 	// if someone has ordered in this week, return true
 	if result.RowsAffected > 0 {
@@ -38,11 +39,12 @@ func (o *orderRepository) CreateOrder(orderRequest *requests.OrderRequestBody) e
 	db := newDBDriver()
 
 	if err := db.Create(&entities.Order{
-		OrderBy: orderRequest.OrderBy,
-		Size:    orderRequest.Size,
-		ItemID:  orderRequest.ItemID,
-		SugarID: orderRequest.SugarID,
-		IceID:   orderRequest.IceID,
+		OrderBy:   orderRequest.OrderBy,
+		Size:      orderRequest.Size,
+		ItemID:    orderRequest.ItemID,
+		SugarID:   orderRequest.SugarID,
+		IceID:     orderRequest.IceID,
+		OrderTime: time.Now().UnixNano(),
 	}).Error; err != nil {
 		return fmt.Errorf("error occurs in creating an order record: %w", err)
 	}
@@ -93,11 +95,8 @@ func (o *orderRepository) QueryWeekOrders() ([]entities.Order, error) {
 	db := newDBDriver()
 
 	orders := []entities.Order{}
-<<<<<<< HEAD
-	err := db.Select("id, order_by, item_id, size, sugar_id, ice_id, Max(created_at)").Where("created_at > ?", utils.OrderIntervalStartTime()).Group("order_by").Order("Max(created_at)").Preload("Item").Preload("Sugar").Preload("Ice").Find(&orders).Error
-=======
-	err := db.Select("id, order_by, item_id, size, sugar_id, ice_id, Max(created_at)").Where("created_at > ?", utils.OrderIntervalStartTime()).Group("order_by").Preload("Item").Preload("Sugar").Preload("Ice").Find(&orders).Error
->>>>>>> master
+
+	err := db.Select("id, order_by, item_id, size, sugar_id, ice_id, Max(order_time) as order_time").Where("order_time > ?", utils.OrderIntervalStartTime().Unix()).Group("order_by").Order("Max(order_time)").Preload("Item").Preload("Sugar").Preload("Ice").Find(&orders).Error
 	if err != nil {
 		return nil, fmt.Errorf("error occurs in QueryWeekOrders: %w", err)
 	}
@@ -151,12 +150,12 @@ func insertIceRows(db *gorm.DB, menu *entities.Menu) {
 }
 
 func (o *orderRepository) DropTable() {
-	conn := newDBDriver()
+	db := newDBDriver()
 
 	// tables to drop
 	tables := []interface{}{&entities.Order{}, &entities.Item{}, &entities.Sugar{}, &entities.Ice{}}
 
-	err := conn.Migrator().DropTable(tables...)
+	err := db.Migrator().DropTable(tables...)
 	if err != nil {
 		log.Fatalf("error occurs in DropTable: %v", err)
 	}
