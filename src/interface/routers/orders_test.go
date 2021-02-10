@@ -169,15 +169,16 @@ func testListOrders(t *testing.T, router *gin.Engine) {
 	weekOrders := responses.WeekOrdersResponse{}
 	json.Unmarshal(b, &weekOrders)
 
-	assert.Equal(t, weekOrders.DetailOrders[0].OrderBy, "hsinwei")
-	assert.Equal(t, weekOrders.DetailOrders[0].Item, "特調咖啡")
-	assert.Equal(t, weekOrders.DetailOrders[0].Price, uint(55))
-	assert.Equal(t, weekOrders.DetailOrders[0].SugarTag, "微糖")
-	assert.Equal(t, weekOrders.DetailOrders[0].IceTag, "去冰")
+	assert.Equal(t, weekOrders.DetailOrders[0].OrderBy, "pinyu")
+	assert.Equal(t, weekOrders.DetailOrders[0].Item, "黑咖啡")
+	assert.Equal(t, weekOrders.DetailOrders[0].Price, uint(60))
+	assert.Equal(t, weekOrders.DetailOrders[0].SugarTag, "無糖")
+	assert.Equal(t, weekOrders.DetailOrders[0].IceTag, "熱")
 
-	assert.Equal(t, weekOrders.DetailOrders[1].OrderBy, "pinyu")
-	assert.Equal(t, weekOrders.DetailOrders[1].Item, "黑咖啡")
-	assert.Equal(t, weekOrders.DetailOrders[1].Price, uint(60))
-	assert.Equal(t, weekOrders.DetailOrders[1].SugarTag, "無糖")
-	assert.Equal(t, weekOrders.DetailOrders[1].IceTag, "熱")
+	assert.Equal(t, weekOrders.DetailOrders[1].OrderBy, "hsinwei")
+	assert.Equal(t, weekOrders.DetailOrders[1].Item, "特調咖啡")
+	assert.Equal(t, weekOrders.DetailOrders[1].Price, uint(55))
+	assert.Equal(t, weekOrders.DetailOrders[1].SugarTag, "微糖")
+	assert.Equal(t, weekOrders.DetailOrders[1].IceTag, "去冰")
+
 }
