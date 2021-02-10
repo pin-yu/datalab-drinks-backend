@@ -21,5 +21,5 @@ func ListOrders() *responses.Response {
 	weekOrderResponse := responses.NewWeekOrdersResponse(orders)
 
 	// put weekOrderResponse into basic response and return
-	return responses.NewResponse(http.StatusAccepted, "ok", weekOrderResponse)
+	return responses.NewResponse(http.StatusOK, "ok", weekOrderResponse)
 }

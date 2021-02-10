@@ -93,7 +93,7 @@ func (o *orderRepository) QueryWeekOrders() ([]entities.Order, error) {
 	db := newDBDriver()
 
 	orders := []entities.Order{}
-	err := db.Debug().Select("id, order_by, item_id, size, sugar_id, ice_id, Max(created_at)").Where("created_at > ?", utils.OrderIntervalStartTime()).Group("order_by").Preload("Item").Preload("Sugar").Preload("Ice").Find(&orders).Error
+	err := db.Select("id, order_by, item_id, size, sugar_id, ice_id, Max(created_at)").Where("created_at > ?", utils.OrderIntervalStartTime()).Group("order_by").Preload("Item").Preload("Sugar").Preload("Ice").Find(&orders).Error
 	if err != nil {
 		return nil, fmt.Errorf("error occurs in QueryWeekOrders: %w", err)
 	}
@@ -113,7 +113,7 @@ func (o *orderRepository) MigrateTable() {
 }
 
 func autoMigrate(db *gorm.DB) {
-	err := db.Debug().AutoMigrate(&entities.Order{})
+	err := db.AutoMigrate(&entities.Order{})
 	if err != nil {
 		log.Fatalf("error occurs in MigrateTable: %v", err)
 	}
@@ -134,16 +134,16 @@ func insertMandatoryRows(db *gorm.DB) {
 
 func insertItemRows(db *gorm.DB, menu *entities.Menu) {
 	for _, series := range menu.Menu {
-		db.Debug().Create(series.Items)
+		db.Create(series.Items)
 	}
 }
 
 func insertSugarRows(db *gorm.DB, menu *entities.Menu) {
-	db.Debug().Create(menu.Sugar)
+	db.Create(menu.Sugar)
 }
 
 func insertIceRows(db *gorm.DB, menu *entities.Menu) {
-	db.Debug().Create(menu.Ice)
+	db.Create(menu.Ice)
 }
 
 func (o *orderRepository) DropTable() {
@@ -152,7 +152,7 @@ func (o *orderRepository) DropTable() {
 	// tables to drop
 	tables := []interface{}{&entities.Order{}, &entities.Item{}, &entities.Sugar{}, &entities.Ice{}}
 
-	err := conn.Debug().Migrator().DropTable(tables...)
+	err := conn.Migrator().DropTable(tables...)
 	if err != nil {
 		log.Fatalf("error occurs in DropTable: %v", err)
 	}

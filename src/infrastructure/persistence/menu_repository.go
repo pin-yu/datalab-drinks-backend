@@ -1,8 +1,7 @@
 package persistence
 
 import (
-	"path/filepath"
-
+	"github.com/pinyu/datalab-drinks-backend/src/config"
 	"github.com/pinyu/datalab-drinks-backend/src/domain/entities"
 	"github.com/pinyu/datalab-drinks-backend/src/domain/repositories"
 
@@ -11,7 +10,7 @@ import (
 )
 
 var (
-	camaYaml = filepath.Join(basePath, "../../assets/cama_menu.yaml")
+	camaYaml = config.GetCamaYamlPath()
 )
 
 // menuRepository implements repository.MenuRepository

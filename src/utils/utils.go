@@ -63,7 +63,7 @@ func OrderIntervalEndTime() time.Time {
 	return endTime
 }
 
-// calculate the day numbers from last friday to now
+// calculate how many number of days from last friday to now
 func daysFromFriday(weekday int, hour int) int {
 	var subtractDay int
 

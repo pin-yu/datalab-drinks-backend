@@ -2,6 +2,7 @@ package services
 
 import (
 	"log"
+	"os/exec"
 
 	"github.com/pinyu/datalab-drinks-backend/src/infrastructure/persistence"
 )
@@ -20,4 +21,17 @@ func DropTable() {
 	orderRepo.DropTable()
 
 	log.Println("database has been dropped")
+}
+
+// DeleteDB deletes .db files
+func DeleteDB() {
+	cmd := exec.Command("rm", persistence.DbPath())
+	stdout, err := cmd.Output()
+
+	if err != nil {
+		log.Println(err.Error())
+		return
+	}
+
+	log.Println(string(stdout))
 }

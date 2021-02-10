@@ -1,22 +1,36 @@
 package config
 
 import (
+	"fmt"
 	"os"
+	"path/filepath"
 
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
+	"github.com/pinyu/datalab-drinks-backend/src/utils"
 )
 
-// GetDbDriver returns a database driver corresponding to the APP_ENV
-func GetDbDriver() gorm.Dialector {
-	env := os.Getenv("APP_ENV")
-	var dialector gorm.Dialector
+var (
+	basePath = utils.GetBasePath()
+)
 
-	if env == "production" {
-		dialector = nil
-	} else {
-		dialector = sqlite.Open("dev.db")
+// GetDBPath return db path corresponding to the GIN_MODE
+func GetDBPath() string {
+	var dbMode string
+
+	env := os.Getenv("GIN_MODE")
+	switch env {
+	case "release":
+		dbMode = "release.db"
+	case "test":
+		dbMode = "test.db"
+	default:
+		dbMode = "dev.db"
 	}
 
-	return dialector
+	return filepath.Join(basePath,
+		fmt.Sprintf("../infrastructure/local/%v", dbMode))
+}
+
+// GetCamaYamlPath return cama yaml path
+func GetCamaYamlPath() string {
+	return filepath.Join(utils.GetBasePath(), "../../assets/cama_menu.yaml")
 }
