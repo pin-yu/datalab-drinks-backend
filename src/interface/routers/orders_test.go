@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"testing"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/pinyu/datalab-drinks-backend/src/application/services"
@@ -169,16 +170,25 @@ func testListOrders(t *testing.T, router *gin.Engine) {
 	weekOrders := responses.WeekOrdersResponse{}
 	json.Unmarshal(b, &weekOrders)
 
-	assert.Equal(t, weekOrders.DetailOrders[0].OrderBy, "pinyu")
-	assert.Equal(t, weekOrders.DetailOrders[0].Item, "黑咖啡")
-	assert.Equal(t, weekOrders.DetailOrders[0].Price, uint(60))
-	assert.Equal(t, weekOrders.DetailOrders[0].SugarTag, "無糖")
-	assert.Equal(t, weekOrders.DetailOrders[0].IceTag, "熱")
+	order1 := weekOrders.DetailOrders[0]
+	order2 := weekOrders.DetailOrders[1]
 
-	assert.Equal(t, weekOrders.DetailOrders[1].OrderBy, "hsinwei")
-	assert.Equal(t, weekOrders.DetailOrders[1].Item, "特調咖啡")
-	assert.Equal(t, weekOrders.DetailOrders[1].Price, uint(55))
-	assert.Equal(t, weekOrders.DetailOrders[1].SugarTag, "微糖")
-	assert.Equal(t, weekOrders.DetailOrders[1].IceTag, "去冰")
+	assert.Equal(t, order1.OrderBy, "pinyu")
+	assert.Equal(t, order1.Size, "large")
+	assert.Equal(t, order1.Item, "黑咖啡")
+	assert.Equal(t, order1.Price, uint(60))
+	assert.Equal(t, order1.SugarTag, "無糖")
+	assert.Equal(t, order1.IceTag, "熱")
+	_, err := time.Parse(time.RFC3339, order1.OrderTime)
+	assert.NoError(t, err, "time is not valid")
+
+	assert.Equal(t, order2.OrderBy, "hsinwei")
+	assert.Equal(t, order2.Size, "medium")
+	assert.Equal(t, order2.Item, "特調咖啡")
+	assert.Equal(t, order2.Price, uint(55))
+	assert.Equal(t, order2.SugarTag, "微糖")
+	assert.Equal(t, order2.IceTag, "去冰")
+	_, err = time.Parse(time.RFC3339, order2.OrderTime)
+	assert.NoError(t, err, "time is not valid")
 
 }
