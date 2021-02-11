@@ -2,18 +2,29 @@ package entities
 
 import "time"
 
-// Order represents drinks orders
+// AggregateOrder represents the summation of week's orders
+type AggregateOrder struct {
+	ItemID        uint
+	Item          string
+	Size          string
+	SugarTag      string
+	IceTag        string
+	SubTotalPrice uint
+	Number        uint
+}
+
+// Order represents basic drinks orders
 type Order struct {
-	ID        uint   `json:"order_id" gorm:"primaryKey"`
-	OrderBy   string `json:"order_by" gorm:"not null"`
-	ItemID    uint   `json:"item_id"`
-	Item      Item   `json:"item"`
-	Size      string `json:"size"`
-	SugarID   uint   `json:"sugar_id"`
-	Sugar     Sugar  `json:"sugar"`
-	IceID     uint   `json:"ice_id"`
-	Ice       Ice    `json:"ice"`
-	OrderTime int64  `json:"order_time"`
+	ID        uint   `gorm:"primaryKey"`
+	OrderBy   string `gorm:"not null"`
+	ItemID    uint
+	Item      Item
+	Size      string
+	SugarID   uint
+	Sugar     Sugar
+	IceID     uint
+	Ice       Ice
+	OrderTime int64
 }
 
 // Price returns price of sizes
@@ -28,7 +39,7 @@ func (o *Order) Price() uint {
 	}
 }
 
-// RFC3339 returns order time in RFC3339 format
-func (o *Order) RFC3339() string {
+// OrderTimeToRFC3339 returns order time in RFC3339 format
+func (o *Order) OrderTimeToRFC3339() string {
 	return time.Unix(0, o.OrderTime).Format(time.RFC3339)
 }

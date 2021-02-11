@@ -12,7 +12,7 @@ func ListOrders() *responses.Response {
 	// create a order repository to handle orders in database
 	orderRepository := persistence.NewOrderRepository()
 
-	orders, err := orderRepository.QueryWeekOrders()
+	orders, err := orderRepository.QueryOrders()
 	if err != nil {
 		return responses.NewResponse(http.StatusInternalServerError, err.Error(), nil)
 	}
