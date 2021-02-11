@@ -133,7 +133,7 @@ GIN_MODE=test go test ./...
 ## TODO:
 - order validation (done)
 - complete integrateion test (done)
-- return an order report (in development)
+- return an order report (done)
 - dockerize (in development)
 - get history orders, not only just get this week's order (in development)
 
