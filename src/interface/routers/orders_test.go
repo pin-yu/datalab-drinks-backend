@@ -191,6 +191,7 @@ func testListOrders(t *testing.T, router *gin.Engine) {
 	assertAggregateOrder(t, &orders.AggregateOrders[2], "特調咖啡", "medium", "微糖", "去冰", uint(110), 2)
 
 	// check detailOrders
+	assert.Len(t, orders.DetailOrders, 4)
 	assertDetailOrder(t, &orders.DetailOrders[0], "pinyu", "large", "黑咖啡", uint(60), "無糖", "熱")
 	assertDetailOrder(t, &orders.DetailOrders[1], "hsinwei", "medium", "特調咖啡", uint(55), "微糖", "去冰")
 	assertDetailOrder(t, &orders.DetailOrders[2], "yilu", "medium", "特調咖啡", uint(55), "微糖", "去冰")
