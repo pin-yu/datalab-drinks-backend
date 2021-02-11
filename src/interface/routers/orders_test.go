@@ -13,6 +13,7 @@ import (
 	"github.com/pinyu/datalab-drinks-backend/src/application/services"
 	"github.com/pinyu/datalab-drinks-backend/src/interface/requests"
 	"github.com/pinyu/datalab-drinks-backend/src/interface/responses"
+	"github.com/pinyu/datalab-drinks-backend/src/utils"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -154,40 +155,78 @@ func badValue(t *testing.T, router *gin.Engine, reqBody io.Reader, statusMessage
 }
 
 func testListOrders(t *testing.T, router *gin.Engine) {
+	performOrderRequests(router)
+
+	// get the orders
+	w := performRequest(router, "GET", "/v1/orders/", nil)
+	assert.Equal(t, 200, w.Code)
+
+	// parse status message
+	body := responses.Body{}
+	json.Unmarshal([]byte(w.Body.String()), &body)
+
+	// check status message
+	assert.Equal(t, "ok", body.StatusMessage)
+
+	// parse payload
+	b, _ := json.Marshal(body.Payload)
+	orders := responses.OrdersResponse{}
+	json.Unmarshal(b, &orders)
+
+	// -------------------------
+	//       check payload
+	// -------------------------
+
+	// check meeting time
+	assert.Equal(t, utils.MeetingStartTime().Format(time.RFC3339), orders.MeetingTime)
+
+	// check totalPrice
+	assert.Equal(t, uint(240), orders.TotalPrice)
+
+	// check aggregateOrders
+	assert.Len(t, orders.AggregateOrders, 3)
+
+	assertAggregateOrder(t, &orders.AggregateOrders[0], "黑咖啡", "large", "無糖", "熱", uint(60), 1)
+	assertAggregateOrder(t, &orders.AggregateOrders[1], "特調咖啡", "large", "微糖", "去冰", uint(70), 1)
+	assertAggregateOrder(t, &orders.AggregateOrders[2], "特調咖啡", "medium", "微糖", "去冰", uint(110), 2)
+
+	// check detailOrders
+	assertDetailOrder(t, &orders.DetailOrders[0], "pinyu", "large", "黑咖啡", uint(60), "無糖", "熱")
+	assertDetailOrder(t, &orders.DetailOrders[1], "hsinwei", "medium", "特調咖啡", uint(55), "微糖", "去冰")
+	assertDetailOrder(t, &orders.DetailOrders[2], "yilu", "medium", "特調咖啡", uint(55), "微糖", "去冰")
+	assertDetailOrder(t, &orders.DetailOrders[3], "yuchiao", "large", "特調咖啡", uint(70), "微糖", "去冰")
+}
+
+func performOrderRequests(router *gin.Engine) {
 	// create the second order
 	reqBody := newOrdersRequestBody("hsinwei", 2, "medium", 2, 2)
 	performRequest(router, "POST", "/v1/orders/", reqBody)
 
-	w := performRequest(router, "GET", "/v1/orders/", nil)
-	assert.Equal(t, 200, w.Code)
+	// create the third order
+	reqBody = newOrdersRequestBody("yilu", 2, "medium", 2, 2)
+	performRequest(router, "POST", "/v1/orders/", reqBody)
 
-	body := responses.Body{}
-	json.Unmarshal([]byte(w.Body.String()), &body)
+	// create the fourth order
+	reqBody = newOrdersRequestBody("yuchiao", 2, "large", 2, 2)
+	performRequest(router, "POST", "/v1/orders/", reqBody)
+}
 
-	assert.Equal(t, "ok", body.StatusMessage)
+func assertAggregateOrder(t *testing.T, order *responses.AggregateOrderResponse, item string, size string, sugarTag string, iceTag string, subTotalPrice uint, number uint) {
+	assert.Equal(t, order.Item, item)
+	assert.Equal(t, size, order.Size)
+	assert.Equal(t, sugarTag, order.SugarTag)
+	assert.Equal(t, iceTag, order.IceTag)
+	assert.Equal(t, subTotalPrice, order.SubTotalPrice)
+	assert.Equal(t, number, order.Number)
+}
 
-	b, _ := json.Marshal(body.Payload)
-	weekOrders := responses.WeekOrdersResponse{}
-	json.Unmarshal(b, &weekOrders)
-
-	order1 := weekOrders.DetailOrders[0]
-	order2 := weekOrders.DetailOrders[1]
-
-	assert.Equal(t, order1.OrderBy, "pinyu")
-	assert.Equal(t, order1.Size, "large")
-	assert.Equal(t, order1.Item, "黑咖啡")
-	assert.Equal(t, order1.Price, uint(60))
-	assert.Equal(t, order1.SugarTag, "無糖")
-	assert.Equal(t, order1.IceTag, "熱")
-	_, err := time.Parse(time.RFC3339, order1.OrderTime)
-	assert.NoError(t, err, "time is not valid")
-
-	assert.Equal(t, order2.OrderBy, "hsinwei")
-	assert.Equal(t, order2.Size, "medium")
-	assert.Equal(t, order2.Item, "特調咖啡")
-	assert.Equal(t, order2.Price, uint(55))
-	assert.Equal(t, order2.SugarTag, "微糖")
-	assert.Equal(t, order2.IceTag, "去冰")
-	_, err = time.Parse(time.RFC3339, order2.OrderTime)
+func assertDetailOrder(t *testing.T, order *responses.OrderResponse, orderBy string, size string, item string, price uint, sugarTag string, iceTag string) {
+	assert.Equal(t, orderBy, order.OrderBy)
+	assert.Equal(t, size, order.Size)
+	assert.Equal(t, item, order.Item)
+	assert.Equal(t, price, order.Price)
+	assert.Equal(t, sugarTag, order.SugarTag)
+	assert.Equal(t, iceTag, order.IceTag)
+	_, err := time.Parse(time.RFC3339, order.OrderTime)
 	assert.NoError(t, err, "time is not valid")
 }

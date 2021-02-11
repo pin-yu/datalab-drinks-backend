@@ -52,7 +52,7 @@ func parseOrderBody(c *gin.Context) (*requests.OrderRequestBody, error) {
 func orderExist(orderRepository repositories.OrderRepository, orderBy string) string {
 	var statusMsg string
 
-	if orderRepository.Exist(orderBy) {
+	if orderRepository.HasOrdered(orderBy) {
 		statusMsg = "drinks has been updated"
 	} else {
 		statusMsg = "drinks has been ordered"
