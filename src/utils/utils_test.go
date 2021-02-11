@@ -16,6 +16,14 @@ func TestOrderIntervalStartTime(t *testing.T) {
 	assert.Equal(t, int(orderIntervalStartTime.Hour()), drinksDeadlineHour, "bad hour in OrderIntervalStartTime")
 }
 
+func TestMeetingStartTime(t *testing.T) {
+	meetingStartTime := MeetingStartTime()
+	orderIntervalEndTime := OrderIntervalEndTime()
+
+	assert.Equal(t, orderIntervalEndTime.Day(), meetingStartTime.Day(), "wrong meeting day")
+	assert.Equal(t, 13, meetingStartTime.Hour(), "meeting start time is not at 13:00")
+}
+
 func TestOrderIntervalEndTime(t *testing.T) {
 	orderIntervalStartTime := OrderIntervalStartTime()
 	orderIntervalEndTime := OrderIntervalEndTime()
@@ -23,21 +31,21 @@ func TestOrderIntervalEndTime(t *testing.T) {
 	// 24 hours * 7 days = 168 hours
 	weekDuration, err := time.ParseDuration("168h")
 	assert.Nil(t, err, "bad ParseDuration in TestOrderIntervalEndTime")
-	assert.Equal(t, orderIntervalEndTime.Sub(orderIntervalStartTime), weekDuration, "bad time in OrderIntervalEndTime")
+	assert.Equal(t, weekDuration, orderIntervalEndTime.Sub(orderIntervalStartTime), "bad time in OrderIntervalEndTime")
 }
 
-func TestDaysFromFriday(t *testing.T) {
+func TestHowManyDaysLastFromFridayToNow(t *testing.T) {
 	var subtractDay int
 
-	subtractDay = daysFromFriday(5, 12)
-	assert.Equal(t, subtractDay, -7, "bad subtractDay")
+	subtractDay = howManyDaysLastFromFridayToNow(5, 12)
+	assert.Equal(t, -7, subtractDay, "bad subtractDay")
 
-	subtractDay = daysFromFriday(5, 16)
-	assert.Equal(t, subtractDay, 0, "bad subtractDay")
+	subtractDay = howManyDaysLastFromFridayToNow(5, 16)
+	assert.Equal(t, 0, subtractDay, "bad subtractDay")
 
-	subtractDay = daysFromFriday(6, 12)
-	assert.Equal(t, subtractDay, -1, "bad subtractDay")
+	subtractDay = howManyDaysLastFromFridayToNow(6, 12)
+	assert.Equal(t, -1, subtractDay, "bad subtractDay")
 
-	subtractDay = daysFromFriday(4, 16)
-	assert.Equal(t, subtractDay, -6, "bad subtractDay")
+	subtractDay = howManyDaysLastFromFridayToNow(4, 16)
+	assert.Equal(t, -6, subtractDay, "bad subtractDay")
 }
