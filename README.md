@@ -91,7 +91,52 @@ GIN_MODE=test go test ./...
 {
     "status_message": "ok",
     "payload": {
+        "meeting_time": "2021-02-12T13:00:00+08:00",
+        "total_price": 330,
+        "aggregate_orders": [
+            {
+                "item": "特調咖啡",
+                "size": "large",
+                "sugar_tag": "無糖",
+                "ice_tag": "熱",
+                "sub_total_price": 140,
+                "number": 2
+            },
+            {
+                "item": "特調咖啡",
+                "size": "medium",
+                "sugar_tag": "無糖",
+                "ice_tag": "熱",
+                "sub_total_price": 55,
+                "number": 1
+            },
+            {
+                "item": "特調咖啡",
+                "size": "medium",
+                "sugar_tag": "半糖",
+                "ice_tag": "去冰",
+                "sub_total_price": 55,
+                "number": 1
+            },
+            {
+                "item": "紅茶拿鐵",
+                "size": "large",
+                "sugar_tag": "微糖",
+                "ice_tag": "熱",
+                "sub_total_price": 80,
+                "number": 1
+            }
+        ],
         "week_orders": [
+            {
+                "order_by": "王祥郁",
+                "item": "特調咖啡",
+                "size": "medium",
+                "price": 55,
+                "sugar_tag": "半糖",
+                "ice_tag": "去冰",
+                "order_time": "2021-02-10T23:36:27+08:00"
+            },
             {
                 "order_by": "王平郁",
                 "item": "紅茶拿鐵",
@@ -99,7 +144,7 @@ GIN_MODE=test go test ./...
                 "price": 80,
                 "sugar_tag": "微糖",
                 "ice_tag": "熱",
-                "order_time": "2021-02-10T23:46:49+08:00"
+                "order_time": "2021-02-10T23:36:49+08:00"
             },
             {
                 "order_by": "何星緯",
@@ -108,7 +153,25 @@ GIN_MODE=test go test ./...
                 "price": 70,
                 "sugar_tag": "無糖",
                 "ice_tag": "熱",
-                "order_time": "2021-02-10T23:47:23+08:00"
+                "order_time": "2021-02-11T11:42:00+08:00"
+            },
+            {
+                "order_by": "吳義路",
+                "item": "特調咖啡",
+                "size": "large",
+                "price": 70,
+                "sugar_tag": "無糖",
+                "ice_tag": "熱",
+                "order_time": "2021-02-11T11:42:13+08:00"
+            },
+            {
+                "order_by": "羅昱喬",
+                "item": "特調咖啡",
+                "size": "medium",
+                "price": 55,
+                "sugar_tag": "無糖",
+                "ice_tag": "熱",
+                "order_time": "2021-02-11T11:42:35+08:00"
             }
         ]
     }
