@@ -5,10 +5,10 @@ import (
 	"log"
 	"time"
 
-	"github.com/pinyu/datalab-drinks-backend/src/domain/entities"
-	"github.com/pinyu/datalab-drinks-backend/src/domain/repositories"
-	"github.com/pinyu/datalab-drinks-backend/src/interface/requests"
-	"github.com/pinyu/datalab-drinks-backend/src/utils"
+	"github.com/pin-yu/datalab-drinks-backend/src/domain/entities"
+	"github.com/pin-yu/datalab-drinks-backend/src/domain/repositories"
+	"github.com/pin-yu/datalab-drinks-backend/src/interface/requests"
+	"github.com/pin-yu/datalab-drinks-backend/src/utils"
 	"gorm.io/gorm"
 )
 

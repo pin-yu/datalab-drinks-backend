@@ -10,10 +10,10 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/pinyu/datalab-drinks-backend/src/application/services"
-	"github.com/pinyu/datalab-drinks-backend/src/interface/requests"
-	"github.com/pinyu/datalab-drinks-backend/src/interface/responses"
-	"github.com/pinyu/datalab-drinks-backend/src/utils"
+	"github.com/pin-yu/datalab-drinks-backend/src/application/services"
+	"github.com/pin-yu/datalab-drinks-backend/src/interface/requests"
+	"github.com/pin-yu/datalab-drinks-backend/src/interface/responses"
+	"github.com/pin-yu/datalab-drinks-backend/src/utils"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -1,8 +1,8 @@
 package repositories
 
 import (
-	"github.com/pinyu/datalab-drinks-backend/src/domain/entities"
-	"github.com/pinyu/datalab-drinks-backend/src/interface/requests"
+	"github.com/pin-yu/datalab-drinks-backend/src/domain/entities"
+	"github.com/pin-yu/datalab-drinks-backend/src/interface/requests"
 )
 
 // OrderRepository is Order CRUD interface

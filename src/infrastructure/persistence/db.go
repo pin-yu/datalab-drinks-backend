@@ -3,7 +3,7 @@ package persistence
 import (
 	"log"
 
-	"github.com/pinyu/datalab-drinks-backend/src/config"
+	"github.com/pin-yu/datalab-drinks-backend/src/config"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )

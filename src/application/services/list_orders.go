@@ -3,8 +3,8 @@ package services
 import (
 	"net/http"
 
-	"github.com/pinyu/datalab-drinks-backend/src/infrastructure/persistence"
-	"github.com/pinyu/datalab-drinks-backend/src/interface/responses"
+	"github.com/pin-yu/datalab-drinks-backend/src/infrastructure/persistence"
+	"github.com/pin-yu/datalab-drinks-backend/src/interface/responses"
 )
 
 // ListOrders returns week orders
