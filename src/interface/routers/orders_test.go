@@ -128,13 +128,8 @@ func testBadValue(t *testing.T, router *gin.Engine) {
 	badValue(t, router, reqBody, statusMessage)
 
 	// the range of sugar_id [1, 4]
-	reqBody = newOrdersRequestBody("pinyu", 22, "large", 5, 2)
+	reqBody = newOrdersRequestBody("pinyu", 20, "large", 5, 2)
 	statusMessage = "invalid sugar_id"
-	badValue(t, router, reqBody, statusMessage)
-
-	// drinks (item_id 22) cannot be made as hot
-	reqBody = newOrdersRequestBody("pinyu", 22, "large", 2, 1)
-	statusMessage = "the drinks should be ice"
 	badValue(t, router, reqBody, statusMessage)
 
 	// the range of ice_id [1, 4]
