@@ -2,10 +2,26 @@ package services
 
 import (
 	"log"
+	"os"
 	"os/exec"
 
 	"github.com/pin-yu/datalab-drinks-backend/src/infrastructure/persistence"
 )
+
+// SetupTestDB will setup a test database
+func SetupTestDB() {
+	if os.Getenv("GIN_MODE") != "test" {
+		log.Fatal("please set GIN_MODE=test")
+	}
+
+	DropTable()
+	MigrateTable()
+}
+
+// CleanTestDB will clean the test database
+func CleanTestDB() {
+	DeleteDB()
+}
 
 // MigrateTable is a special service for migrating database tables
 func MigrateTable() {
