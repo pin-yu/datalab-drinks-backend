@@ -24,13 +24,13 @@ func TestReadMenu(t *testing.T) {
 	assert.Equal(t, "其他飲品", menu["series"])
 
 	// check item
-	item := menu["items"].([]interface{})[3].(map[string]interface{})
-	assert.Equal(t, uint(22), uint(item["item_id"].(float64)))
-	assert.Equal(t, "野櫻梅果醋", item["item"])
+	item := menu["items"].([]interface{})[1].(map[string]interface{})
+	assert.Equal(t, uint(20), uint(item["item_id"].(float64)))
+	assert.Equal(t, "純釀烏梅汁", item["item"])
 	assert.Equal(t, uint(50), uint(item["large_price"].(float64)))
 	assert.Equal(t, uint(40), uint(item["medium_price"].(float64)))
 	assert.Equal(t, true, item["cold"])
-	assert.Equal(t, false, item["hot"])
+	assert.Equal(t, true, item["hot"])
 
 	// check sugar_id and sugar_tag
 	sugar := body.Payload.(map[string]interface{})["sugar"].([]interface{})[3].(map[string]interface{})
