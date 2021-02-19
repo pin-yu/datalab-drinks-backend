@@ -1,4 +1,4 @@
-module github.com/pinyu/datalab-drinks-backend
+module github.com/pin-yu/datalab-drinks-backend
 
 go 1.15
 

@@ -1,11 +1,11 @@
 package persistence
 
 import (
-	"github.com/pinyu/datalab-drinks-backend/src/config"
-	"github.com/pinyu/datalab-drinks-backend/src/domain/entities"
-	"github.com/pinyu/datalab-drinks-backend/src/domain/repositories"
+	"github.com/pin-yu/datalab-drinks-backend/src/config"
+	"github.com/pin-yu/datalab-drinks-backend/src/domain/entities"
+	"github.com/pin-yu/datalab-drinks-backend/src/domain/repositories"
 
-	"github.com/pinyu/datalab-drinks-backend/src/utils"
+	"github.com/pin-yu/datalab-drinks-backend/src/utils"
 	"gopkg.in/yaml.v2"
 )
 

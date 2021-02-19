@@ -10,10 +10,10 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/pinyu/datalab-drinks-backend/src/application/services"
-	"github.com/pinyu/datalab-drinks-backend/src/interface/requests"
-	"github.com/pinyu/datalab-drinks-backend/src/interface/responses"
-	"github.com/pinyu/datalab-drinks-backend/src/utils"
+	"github.com/pin-yu/datalab-drinks-backend/src/application/services"
+	"github.com/pin-yu/datalab-drinks-backend/src/interface/requests"
+	"github.com/pin-yu/datalab-drinks-backend/src/interface/responses"
+	"github.com/pin-yu/datalab-drinks-backend/src/utils"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -63,7 +63,7 @@ func TestOrderDrinks(t *testing.T) {
 }
 
 func testFirstOrder(t *testing.T, router *gin.Engine) {
-	reqBody := newOrdersRequestBody("pinyu", 1, "medium", 1, 1)
+	reqBody := newOrdersRequestBody("pin-yu", 1, "medium", 1, 1)
 
 	w := performRequest(router, "POST", "/v1/orders/", reqBody)
 	assert.Equal(t, 200, w.Code)
@@ -76,7 +76,7 @@ func testFirstOrder(t *testing.T, router *gin.Engine) {
 }
 
 func testUpdateOrder(t *testing.T, router *gin.Engine) {
-	reqBody := newOrdersRequestBody("pinyu", 1, "large", 1, 1)
+	reqBody := newOrdersRequestBody("pin-yu", 1, "large", 1, 1)
 
 	w := performRequest(router, "POST", "/v1/orders/", reqBody)
 	assert.Equal(t, 200, w.Code)
@@ -94,19 +94,19 @@ func testSchema(t *testing.T, router *gin.Engine) {
 	badSchema(t, router, reqBody)
 
 	// item_id 0 will be consider as bad schema
-	reqBody = newOrdersRequestBody("pinyu", 0, "large", 1, 1)
+	reqBody = newOrdersRequestBody("pin-yu", 0, "large", 1, 1)
 	badSchema(t, router, reqBody)
 
 	// size which is not medium and not large will be consider as bad schema
-	reqBody = newOrdersRequestBody("pinyu", 1, "L", 1, 1)
+	reqBody = newOrdersRequestBody("pin-yu", 1, "L", 1, 1)
 	badSchema(t, router, reqBody)
 
 	// sugar_id 0 will be consider as bad schema
-	reqBody = newOrdersRequestBody("pinyu", 1, "large", 0, 1)
+	reqBody = newOrdersRequestBody("pin-yu", 1, "large", 0, 1)
 	badSchema(t, router, reqBody)
 
 	// ice_id 0 will be consider as bad schema
-	reqBody = newOrdersRequestBody("pinyu", 1, "large", 1, 0)
+	reqBody = newOrdersRequestBody("pin-yu", 1, "large", 1, 0)
 	badSchema(t, router, reqBody)
 }
 
@@ -123,22 +123,22 @@ func badSchema(t *testing.T, router *gin.Engine, reqBody io.Reader) {
 
 func testBadValue(t *testing.T, router *gin.Engine) {
 	// the range of item_id is [1, 22]
-	reqBody := newOrdersRequestBody("pinyu", 23, "large", 1, 1)
+	reqBody := newOrdersRequestBody("pin-yu", 23, "large", 1, 1)
 	statusMessage := "invalid item_id"
 	badValue(t, router, reqBody, statusMessage)
 
 	// the range of sugar_id [1, 4]
-	reqBody = newOrdersRequestBody("pinyu", 22, "large", 5, 2)
+	reqBody = newOrdersRequestBody("pin-yu", 22, "large", 5, 2)
 	statusMessage = "invalid sugar_id"
 	badValue(t, router, reqBody, statusMessage)
 
 	// drinks (item_id 22) cannot be made as hot
-	reqBody = newOrdersRequestBody("pinyu", 22, "large", 2, 1)
+	reqBody = newOrdersRequestBody("pin-yu", 22, "large", 2, 1)
 	statusMessage = "the drinks should be ice"
 	badValue(t, router, reqBody, statusMessage)
 
 	// the range of ice_id [1, 4]
-	reqBody = newOrdersRequestBody("pinyu", 1, "large", 1, 5)
+	reqBody = newOrdersRequestBody("pin-yu", 1, "large", 1, 5)
 	statusMessage = "invalid ice_id"
 	badValue(t, router, reqBody, statusMessage)
 }
@@ -192,7 +192,7 @@ func testListOrders(t *testing.T, router *gin.Engine) {
 
 	// check detailOrders
 	assert.Len(t, orders.DetailOrders, 4)
-	assertDetailOrder(t, &orders.DetailOrders[0], "pinyu", "large", "黑咖啡", uint(60), "無糖", "熱")
+	assertDetailOrder(t, &orders.DetailOrders[0], "pin-yu", "large", "黑咖啡", uint(60), "無糖", "熱")
 	assertDetailOrder(t, &orders.DetailOrders[1], "hsinwei", "medium", "特調咖啡", uint(55), "微糖", "去冰")
 	assertDetailOrder(t, &orders.DetailOrders[2], "yilu", "medium", "特調咖啡", uint(55), "微糖", "去冰")
 	assertDetailOrder(t, &orders.DetailOrders[3], "yuchiao", "large", "特調咖啡", uint(70), "微糖", "去冰")

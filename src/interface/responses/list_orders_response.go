@@ -1,6 +1,6 @@
 package responses
 
-import "github.com/pinyu/datalab-drinks-backend/src/domain/entities"
+import "github.com/pin-yu/datalab-drinks-backend/src/domain/entities"
 
 // OrdersResponse represents the response of list_orders service
 type OrdersResponse struct {

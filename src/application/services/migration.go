@@ -4,7 +4,7 @@ import (
 	"log"
 	"os/exec"
 
-	"github.com/pinyu/datalab-drinks-backend/src/infrastructure/persistence"
+	"github.com/pin-yu/datalab-drinks-backend/src/infrastructure/persistence"
 )
 
 // MigrateTable is a special service for migrating database tables

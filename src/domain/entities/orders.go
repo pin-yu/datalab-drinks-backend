@@ -3,7 +3,7 @@ package entities
 import (
 	"time"
 
-	"github.com/pinyu/datalab-drinks-backend/src/utils"
+	"github.com/pin-yu/datalab-drinks-backend/src/utils"
 )
 
 // Orders represents the aggregation of orders

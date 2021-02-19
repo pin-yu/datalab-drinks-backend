@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/pinyu/datalab-drinks-backend/src/interface/responses"
+	"github.com/pin-yu/datalab-drinks-backend/src/interface/responses"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"github.com/pinyu/datalab-drinks-backend/src/domain/entities"
+	"github.com/pin-yu/datalab-drinks-backend/src/domain/entities"
 )
 
 // MenuRepository is Menu CRUD interface
