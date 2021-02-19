@@ -8,8 +8,8 @@ package main
 import (
 	"flag"
 
-	"github.com/pinyu/datalab-drinks-backend/src/application/services"
-	"github.com/pinyu/datalab-drinks-backend/src/interface/routers"
+	"github.com/pin-yu/datalab-drinks-backend/src/application/services"
+	"github.com/pin-yu/datalab-drinks-backend/src/interface/routers"
 )
 
 var migrateFlag bool

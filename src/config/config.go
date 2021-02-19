@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/pinyu/datalab-drinks-backend/src/utils"
+	"github.com/pin-yu/datalab-drinks-backend/src/utils"
 )
 
 var (

@@ -2,7 +2,7 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/pinyu/datalab-drinks-backend/src/application/services"
+	"github.com/pin-yu/datalab-drinks-backend/src/application/services"
 )
 
 func addOrdersRouter(rg *gin.RouterGroup) {
