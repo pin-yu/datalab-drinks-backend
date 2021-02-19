@@ -149,20 +149,6 @@ menu:
         medium_price: 40
         cold: true
         hot: true
-      - 
-        item_id: 21
-        item: "青蘋果醋"
-        large_price: 50
-        medium_price: 40
-        cold: true
-        hot: false
-      - 
-        item_id: 22
-        item: "野櫻梅果醋"
-        large_price: 50
-        medium_price: 40
-        cold: true
-        hot: false
 sugar:
   - 
     sugar_id: 1
