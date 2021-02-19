@@ -25,7 +25,7 @@ func NewOrderRepository() repositories.OrderRepository {
 func (o *orderRepository) HasOrdered(orderBy string) bool {
 	db := newDBDriver()
 
-	result := db.Where("order_by = ? AND order_time > ?", orderBy, utils.OrderIntervalStartTime().Unix()).Find(&[]entities.Order{})
+	result := db.Where("order_by = ? AND order_time >= ?", orderBy, utils.OrderIntervalStartTime().UnixNano()).Find(&[]entities.Order{})
 
 	// if someone has ordered in this week, return true
 	if result.RowsAffected > 0 {
@@ -108,7 +108,7 @@ func (o *orderRepository) QueryOrders() (*entities.Orders, error) {
 }
 
 func queryDetailOrders(o *orderRepository, db *gorm.DB, orders *entities.Orders) error {
-	err := db.Select("id, order_by, item_id, size, sugar_id, ice_id, Max(order_time) as order_time").Where("order_time > ?", utils.OrderIntervalStartTime().Unix()).Group("order_by").Order("Max(order_time)").Preload("Item").Preload("Sugar").Preload("Ice").Find(&orders.DetailOrders).Error
+	err := db.Select("id, order_by, item_id, size, sugar_id, ice_id, Max(order_time) as order_time").Where("order_time >= ?", utils.OrderIntervalStartTime().UnixNano()).Group("order_by").Order("Max(order_time)").Preload("Item").Preload("Sugar").Preload("Ice").Find(&orders.DetailOrders).Error
 	if err != nil {
 		return err
 	}
@@ -117,7 +117,7 @@ func queryDetailOrders(o *orderRepository, db *gorm.DB, orders *entities.Orders)
 }
 
 func queryAggregateOrders(o *orderRepository, db *gorm.DB, orders *entities.Orders) error {
-	subQuery := db.Model(entities.Order{}).Select("order_by, item_id, size, sugar_id, ice_id").Where("order_time > ?", utils.OrderIntervalStartTime().Unix()).Group("order_by").Order("Max(order_time)")
+	subQuery := db.Model(entities.Order{}).Select("order_by, item_id, size, sugar_id, ice_id").Where("order_time >= ?", utils.OrderIntervalStartTime().UnixNano()).Group("order_by").Order("Max(order_time)")
 
 	err := db.Table("(?) as u", subQuery).Select("count(*) as number, item_id, item, size, sugars.tag as sugar_tag, ices.tag as ice_tag").Joins("JOIN items on item_id=items.id").Joins("JOIN sugars on sugar_id=sugars.id").Joins("JOIN ices on ice_id=ices.id").Group("item_id, size, sugar_id, ice_id").Find(&orders.AggregateOrders).Error
 	if err != nil {

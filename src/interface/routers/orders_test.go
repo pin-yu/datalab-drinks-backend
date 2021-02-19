@@ -4,8 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"io"
-	"log"
-	"os"
 	"testing"
 	"time"
 
@@ -16,19 +14,6 @@ import (
 	"github.com/pin-yu/datalab-drinks-backend/src/utils"
 	"github.com/stretchr/testify/assert"
 )
-
-func setupDB() {
-	if os.Getenv("GIN_MODE") != "test" {
-		log.Fatal("please set GIN_MODE=test")
-	}
-
-	services.DropTable()
-	services.MigrateTable()
-}
-
-func cleanDB() {
-	services.DeleteDB()
-}
 
 func newOrdersRequestBody(orderBy string, itemID uint, size string, sugarID uint, iceID uint) io.Reader {
 	orderRequest := requests.OrderRequestBody{
@@ -46,7 +31,7 @@ func newOrdersRequestBody(orderBy string, itemID uint, size string, sugarID uint
 }
 
 func TestOrderDrinks(t *testing.T) {
-	setupDB()
+	services.SetupTestDB()
 
 	router := setupRouter()
 
@@ -59,7 +44,7 @@ func TestOrderDrinks(t *testing.T) {
 	// test GET orders
 	testListOrders(t, router)
 
-	cleanDB()
+	services.CleanTestDB()
 }
 
 func testFirstOrder(t *testing.T, router *gin.Engine) {
