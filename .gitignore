@@ -2,6 +2,13 @@
 # Created by https://www.toptal.com/developers/gitignore/api/go
 # Edit at https://www.toptal.com/developers/gitignore?templates=go
 
+# TSL
+*.csr
+*.key
+*.pem
+*.crt
+certs
+
 ### Go ###
 # Binaries for programs and plugins
 *.exe
