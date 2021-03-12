@@ -6,6 +6,7 @@ type Item struct {
 	Item        string `yaml:"item" json:"item" gorm:"not null"`
 	MediumPrice uint   `yaml:"medium_price" json:"medium_price"`
 	LargePrice  uint   `yaml:"large_price" json:"large_price"`
+	Sugar       bool   `yaml:"sugar" json:"sugar"`
 	Cold        bool   `yaml:"cold" json:"cold" gorm:"not null"`
 	Hot         bool   `yaml:"hot" json:"hot" gorm:"not null"`
 }

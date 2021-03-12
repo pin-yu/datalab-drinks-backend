@@ -29,6 +29,7 @@ func TestReadMenu(t *testing.T) {
 	assert.Equal(t, "純釀烏梅汁", item["item"])
 	assert.Equal(t, uint(50), uint(item["large_price"].(float64)))
 	assert.Equal(t, uint(40), uint(item["medium_price"].(float64)))
+	assert.Equal(t, true, item["sugar"])
 	assert.Equal(t, true, item["cold"])
 	assert.Equal(t, true, item["hot"])
 
