@@ -78,10 +78,10 @@ func validateOrderRequest(orderRequest *requests.OrderRequestBody, orderReposito
 	}
 
 	// if a drinks cannot be made as hot, iceId couldn't be 1 which is hot
-	if !item.Hot && ice.ID == 1 {
+	if !item.Hot && ice.IsHotID() {
 		return fmt.Errorf("the drinks should be ice")
 	}
-	if !item.Cold && ice.ID > 1 {
+	if !item.Cold && !ice.IsHotID() {
 		return fmt.Errorf("the drinks should be hot")
 	}
 
