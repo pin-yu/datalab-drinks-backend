@@ -9,10 +9,6 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-var (
-	camaYaml = config.GetCamaYamlPath()
-)
-
 // menuRepository implements repository.MenuRepository
 type menuRepository struct {
 }
@@ -24,9 +20,10 @@ func NewMenuRepository() repositories.MenuRepository {
 
 // ReadMenu returns cama menu
 func (m *menuRepository) ReadMenu() (*entities.Menu, error) {
-	yamlContent := utils.ReadFile(camaYaml)
+	yamlContent := utils.ReadFile(config.GetCamaYamlPath())
 
 	menu := &entities.Menu{}
+
 	err := yaml.Unmarshal([]byte(yamlContent), menu)
 	if err != nil {
 		return nil, err

@@ -8,7 +8,7 @@ import (
 // Run the web server
 func Run() {
 	router := setupRouter()
-	router.Run(":5000")
+	router.Run(":5002")
 }
 
 func setupRouter() *gin.Engine {
@@ -17,9 +17,9 @@ func setupRouter() *gin.Engine {
 	// support cors
 	router.Use(cors.Default())
 
-	v1 := router.Group("v1")
-	addMenusRouter(v1)
-	addOrdersRouter(v1)
+	group := router.Group("v2")
+	addMenusRouter(group)
+	addOrdersRouter(group)
 
 	return router
 }

@@ -28,11 +28,7 @@ func (o *orderRepository) HasOrdered(orderBy string) bool {
 	result := db.Where("order_by = ? AND order_time >= ?", orderBy, utils.OrderIntervalStartTime().UnixNano()).Find(&[]entities.Order{})
 
 	// if someone has ordered in this week, return true
-	if result.RowsAffected > 0 {
-		return true
-	}
-
-	return false
+	return result.RowsAffected > 0
 }
 
 func (o *orderRepository) CreateOrder(orderRequest *requests.OrderRequestBody) error {
@@ -180,29 +176,41 @@ func autoMigrate(db *gorm.DB) {
 
 // insertMandatoryRows will inserts mandatory rows into Item, Sugar, Ice table.
 func insertMandatoryRows(db *gorm.DB) {
+	insertItemRows(db)
+	insertSugarRows(db)
+	insertIceRows(db)
+}
+
+func insertItemRows(db *gorm.DB) {
 	menuRepo := NewMenuRepository()
 	menu, err := menuRepo.ReadMenu()
 	if err != nil {
-		log.Fatalf("error occurs at insertMandatoryRows: %v", err)
+		log.Fatalf("error occurs at insertItemRows: %v", err)
 	}
 
-	insertItemRows(db, menu)
-	insertSugarRows(db, menu)
-	insertIceRows(db, menu)
-}
-
-func insertItemRows(db *gorm.DB, menu *entities.Menu) {
 	for _, series := range menu.Menu {
 		db.Create(series.Items)
 	}
 }
 
-func insertSugarRows(db *gorm.DB, menu *entities.Menu) {
-	db.Create(menu.Sugar)
+func insertSugarRows(db *gorm.DB) {
+	sugarsRepo := NewSugarsRepository()
+	sugars, err := sugarsRepo.ReadSugars()
+	if err != nil {
+		log.Fatalf("error occurs at insertSugarRows: %v", err)
+	}
+
+	db.Create(sugars.Sugars)
 }
 
-func insertIceRows(db *gorm.DB, menu *entities.Menu) {
-	db.Create(menu.Ice)
+func insertIceRows(db *gorm.DB) {
+	icesRepo := NewIcesRepository()
+	ices, err := icesRepo.ReadIces()
+	if err != nil {
+		log.Fatalf("error occurs at insertIcesRows: %v", err)
+	}
+
+	db.Create(ices.Ices)
 }
 
 func (o *orderRepository) DropTable() {

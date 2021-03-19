@@ -32,5 +32,17 @@ func GetDBPath() string {
 
 // GetCamaYamlPath return cama yaml path
 func GetCamaYamlPath() string {
-	return filepath.Join(utils.GetBasePath(), "../../assets/cama_menu.yaml")
+	return getPathFromBase("../../assets/cama_menu.yaml")
+}
+
+func GetSugarYamlPath() string {
+	return getPathFromBase("../../assets/sugar.yaml")
+}
+
+func GetIceYamlPath() string {
+	return getPathFromBase("../../assets/ice.yaml")
+}
+
+func getPathFromBase(path string) string {
+	return filepath.Join(basePath, path)
 }

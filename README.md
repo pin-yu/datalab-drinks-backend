@@ -1,4 +1,16 @@
-# DataLab Drinks Backend
+# DataLab Drinks Backend Version 2.0.0
+
+## Table of Contents
+**[Run the server](##run-the-server)**<br>
+**[Tests](##tests)**</br>
+**[Data Migration](##data-migration)**</br>
+**[API Information](##api-information)**<br>
+- **[GET: /v2/menus](###get:-`/v2/menus`)**
+- **[GET: /v2/orders](###get:-`/v2/orders`)**
+- **[POST: /v2/orders](###post:-`/v2/orders`)**
+
+**[Todo](##todo)**<br>
+**[Change Log](##change-log)**<br>
 
 ## Run the server
 
@@ -8,16 +20,22 @@ GIN_MODE=release go run src/main.go
 
 The server will start listening on port 5000
 
-## Run the unit and integration test
+## Tests
 
 ```bash
 GIN_MODE=test go test ./...
 ```
 
-## API
+## Data Migration
 
-- GET: `/v1/menus`
-    - return Cama's menu in json format
+```bash
+go run src/main.go -m
+```
+
+## API information
+
+### GET: `/v2/menus`
+- return Cama's menu in json format
 
 ```json
 {
@@ -33,59 +51,57 @@ GIN_MODE=test go test ./...
                         "item": "黑咖啡",
                         "medium_price": 45,
                         "large_price": 60,
-                        "cold": true,
-                        "hot": true
+                        "sugars": [
+                            {
+                                "sugar_id": 1,
+                                "sugar_tag": "無糖"
+                            },
+                            {
+                                "sugar_id": 2,
+                                "sugar_tag": "微糖"
+                            },
+                            {
+                                "sugar_id": 3,
+                                "sugar_tag": "半糖"
+                            },
+                            {
+                                "sugar_id": 4,
+                                "sugar_tag": "正常糖"
+                            }
+                        ],
+                        "ices": [
+                            {
+                                "ice_id": 1,
+                                "ice_tag": "熱"
+                            },
+                            {
+                                "ice_id": 2,
+                                "ice_tag": "去冰"
+                            },
+                            {
+                                "ice_id": 3,
+                                "ice_tag": "少冰"
+                            },
+                            {
+                                "ice_id": 4,
+                                "ice_tag": "正常冰"
+                            }
+                        ]
                     }
                 ]
-            }
-        ],
-        "sugar": [
-            {
-                "sugar_id": 1,
-                "sugar_tag": "無糖"
-            },
-            {
-                "sugar_id": 2,
-                "sugar_tag": "微糖"
-            },
-            {
-                "sugar_id": 3,
-                "sugar_tag": "半糖"
-            },
-            {
-                "sugar_id": 4,
-                "sugar_tag": "正常糖"
-            }
-        ],
-        "ice": [
-            {
-                "ice_id": 1,
-                "ice_tag": "熱"
-            },
-            {
-                "ice_id": 2,
-                "ice_tag": "去冰"
-            },
-            {
-                "ice_id": 3,
-                "ice_tag": "少冰"
-            },
-            {
-                "ice_id": 4,
-                "ice_tag": "正常冰"
             }
         ]
     }
 }
 ```
 
-- GET: `/v1/orders`
-    - return the orders within `this week`!
-    - the new week is defined if time pasts at 16:00 Friday
-        - 15:59 Friday (this week)
-        - 16:00 Friday (next week)
-    - in json format
-    - order_time follows RFC3339 format
+## GET: `/v2/orders`
+- return the orders within `this week`!
+- the new week is defined if time pasts at 16:00 Friday
+    - 15:59 Friday (this week)
+    - 16:00 Friday (next week)
+- in json format
+- order_time follows RFC3339 format
 
 ```json
 {
@@ -178,10 +194,10 @@ GIN_MODE=test go test ./...
 }
 ```
 
-- POST: `/v1/oders`
-    - requires json body
-    - if you want to update the order, just re-post
-        - The server considers the value of `order_by` as key
+## POST: `/v2/orders`
+- requires json body
+- if you want to update the order, just re-post
+    - The server considers the value of `order_by` as key
 
 ```json
 {
@@ -193,10 +209,15 @@ GIN_MODE=test go test ./...
 }
 ```
 
-## TODO:
-- order validation (done)
-- complete integrateion test (done)
-- return an order report (done)
+## TODO
 - dockerize (in development)
 - get history orders, not only just get this week's order (in development)
 
+## Change Log
+### 2021/3/19 - Version 2.0.0
+- change URL from /v1 to /v2
+- Revise the returned format of /v2/menu in order to aggregate the business logic in this project
+    - sugar and ice list will be returned within the item
+
+### 2021/2/17 - Version 1.0.0
+- first release

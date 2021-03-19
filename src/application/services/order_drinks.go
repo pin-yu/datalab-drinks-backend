@@ -67,7 +67,7 @@ func validateOrderRequest(orderRequest *requests.OrderRequestBody, orderReposito
 		return err
 	}
 
-	_, err = orderRepository.ValidateSugarID(orderRequest.SugarID)
+	sugar, err := orderRepository.ValidateSugarID(orderRequest.SugarID)
 	if err != nil {
 		return err
 	}
@@ -77,11 +77,15 @@ func validateOrderRequest(orderRequest *requests.OrderRequestBody, orderReposito
 		return err
 	}
 
+	if !item.Sugar && !sugar.IsNormalSugar() {
+		return fmt.Errorf("the sugar should be normal")
+	}
+
 	// if a drinks cannot be made as hot, iceId couldn't be 1 which is hot
-	if !item.Hot && ice.IsHotID() {
+	if !item.Hot && ice.IsHot() {
 		return fmt.Errorf("the drinks should be ice")
 	}
-	if !item.Cold && !ice.IsHotID() {
+	if !item.Cold && !ice.IsHot() {
 		return fmt.Errorf("the drinks should be hot")
 	}
 
