@@ -1,0 +1,13 @@
+ices:
+  -
+    ice_id: 1
+    ice_tag: "熱"
+  -
+    ice_id: 2
+    ice_tag: "去冰"
+  -
+    ice_id: 3
+    ice_tag: "少冰"
+  -
+    ice_id: 4
+    ice_tag: "正常冰"

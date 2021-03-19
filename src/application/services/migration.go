@@ -31,7 +31,7 @@ func MigrateTable() {
 	log.Println("database has been migrated")
 }
 
-// DropTable is a special service for drop database tables
+// DropTable is a special service for dropping database tables
 func DropTable() {
 	orderRepo := persistence.NewOrderRepository()
 	orderRepo.DropTable()
