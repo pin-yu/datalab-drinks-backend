@@ -19,11 +19,11 @@ func GetDBPath() string {
 	env := os.Getenv("GIN_MODE")
 	switch env {
 	case "release":
-		dbMode = "release.db"
+		dbMode = "release-v2_0_0.db"
 	case "test":
-		dbMode = "test.db"
+		dbMode = "test-v2_0_0.db"
 	default:
-		dbMode = "dev.db"
+		dbMode = "dev-v2_0_0.db"
 	}
 
 	return filepath.Join(basePath,
@@ -32,5 +32,17 @@ func GetDBPath() string {
 
 // GetCamaYamlPath return cama yaml path
 func GetCamaYamlPath() string {
-	return filepath.Join(utils.GetBasePath(), "../../assets/cama_menu.yaml")
+	return getPathFromBase("../../assets/cama_menu.yaml")
+}
+
+func GetSugarYamlPath() string {
+	return getPathFromBase("../../assets/sugar.yaml")
+}
+
+func GetIceYamlPath() string {
+	return getPathFromBase("../../assets/ice.yaml")
+}
+
+func getPathFromBase(path string) string {
+	return filepath.Join(basePath, path)
 }

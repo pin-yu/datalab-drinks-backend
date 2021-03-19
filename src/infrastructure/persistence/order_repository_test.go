@@ -1,28 +1,12 @@
 package persistence
 
 import (
-	"log"
-	"os"
-	"os/exec"
 	"testing"
 	"time"
 
 	"github.com/pin-yu/datalab-drinks-backend/src/domain/entities"
 	"github.com/stretchr/testify/assert"
 )
-
-func setupTestDB() {
-	if os.Getenv("GIN_MODE") != "test" {
-		log.Fatal("please set GIN_MODE=test")
-	}
-
-	NewOrderRepository().DropTable()
-	NewOrderRepository().MigrateTable()
-}
-
-func cleanTestDB() {
-	exec.Command("rm", DbPath())
-}
 
 // Only test time dependent functions
 // e.g. ORDER BY > timestamp
