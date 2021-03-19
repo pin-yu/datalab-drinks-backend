@@ -1,16 +1,16 @@
 # DataLab Drinks Backend Version 2.0.0
 
 ## Table of Contents
-**[Run the server](##run-the-server)**<br>
-**[Tests](##tests)**</br>
-**[Data Migration](##data-migration)**</br>
-**[API Information](##api-information)**<br>
-- **[GET: /v2/menus](###get:-`/v2/menus`)**
-- **[GET: /v2/orders](###get:-`/v2/orders`)**
-- **[POST: /v2/orders](###post:-`/v2/orders`)**
+**[Run the server](#run-the-server)**<br>
+**[Tests](#tests)**</br>
+**[Data Migration](#data-migration)**</br>
+**[API Information](#api-information)**<br>
+- **[GET: /v2/menus](#get:-`/v2/menus`)**
+- **[GET: /v2/orders](#get:-`/v2/orders`)**
+- **[POST: /v2/orders](#post:-`/v2/orders`)**
 
-**[Todo](##todo)**<br>
-**[Change Log](##change-log)**<br>
+**[Todo](#todo)**<br>
+**[Change Log](#change-log)**<br>
 
 ## Run the server
 
