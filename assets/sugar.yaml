@@ -1,0 +1,13 @@
+sugars:
+  - 
+    sugar_id: 1
+    sugar_tag: "無糖"
+  -
+    sugar_id: 2
+    sugar_tag: "微糖"
+  -
+    sugar_id: 3
+    sugar_tag: "半糖"
+  -
+    sugar_id: 4
+    sugar_tag: "正常糖"
