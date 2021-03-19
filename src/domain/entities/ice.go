@@ -2,11 +2,12 @@ package entities
 
 // Ice represents drinks ice
 type Ice struct {
-	ID  uint   `yaml:"ice_id" json:"ice_id" gorm:"primaryKey"`
-	Tag string `yaml:"ice_tag" json:"ice_tag" gorm:"not null"`
+	ID  uint   `yaml:"ice_id" gorm:"primaryKey"`
+	Tag string `yaml:"ice_tag"  gorm:"not null"`
 }
 
-// IsHotID return true if this ID means hot
-func (ice *Ice) IsHotID() bool {
-	return ice.ID == 1
+// IsHot returns true if this ID stands for hot drinks
+func (ice *Ice) IsHot() bool {
+	hotID := uint(1)
+	return ice.ID == hotID
 }

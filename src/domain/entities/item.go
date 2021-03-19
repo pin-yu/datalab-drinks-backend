@@ -2,11 +2,11 @@ package entities
 
 // Item represents Cama drinks items
 type Item struct {
-	ID          uint   `yaml:"item_id" json:"item_id" gorm:"primaryKey"`
-	Item        string `yaml:"item" json:"item" gorm:"not null"`
-	MediumPrice uint   `yaml:"medium_price" json:"medium_price"`
-	LargePrice  uint   `yaml:"large_price" json:"large_price"`
-	Sugar       bool   `yaml:"sugar" json:"sugar"`
-	Cold        bool   `yaml:"cold" json:"cold" gorm:"not null"`
-	Hot         bool   `yaml:"hot" json:"hot" gorm:"not null"`
+	ID          uint   `yaml:"item_id" gorm:"primaryKey"`
+	Item        string `yaml:"item" gorm:"not null"`
+	MediumPrice uint   `yaml:"medium_price"`
+	LargePrice  uint   `yaml:"large_price"`
+	Sugar       bool   `yaml:"sugar_adjustable" gorm:"not null"`
+	Cold        bool   `yaml:"cold_adjustable"  gorm:"not null"`
+	Hot         bool   `yaml:"hot_adjustable" gorm:"not null"`
 }

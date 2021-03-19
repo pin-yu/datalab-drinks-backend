@@ -50,11 +50,11 @@ func TestOrderDrinks(t *testing.T) {
 func testFirstOrder(t *testing.T, router *gin.Engine) {
 	reqBody := newOrdersRequestBody("pinyu", 1, "medium", 1, 1)
 
-	w := performRequest(router, "POST", "/v1/orders/", reqBody)
+	w := performRequest(router, "POST", "/v2/orders/", reqBody)
 	assert.Equal(t, 200, w.Code)
 
 	body := responses.Body{}
-	json.Unmarshal([]byte(w.Body.String()), &body)
+	json.Unmarshal(w.Body.Bytes(), &body)
 
 	assert.Equal(t, "drinks has been ordered", body.StatusMessage)
 	assert.Nil(t, body.Payload)
@@ -63,11 +63,11 @@ func testFirstOrder(t *testing.T, router *gin.Engine) {
 func testUpdateOrder(t *testing.T, router *gin.Engine) {
 	reqBody := newOrdersRequestBody("pinyu", 1, "large", 1, 1)
 
-	w := performRequest(router, "POST", "/v1/orders/", reqBody)
+	w := performRequest(router, "POST", "/v2/orders/", reqBody)
 	assert.Equal(t, 200, w.Code)
 
 	body := responses.Body{}
-	json.Unmarshal([]byte(w.Body.String()), &body)
+	json.Unmarshal(w.Body.Bytes(), &body)
 
 	assert.Equal(t, "drinks has been updated", body.StatusMessage)
 	assert.Nil(t, body.Payload)
@@ -96,11 +96,11 @@ func testSchema(t *testing.T, router *gin.Engine) {
 }
 
 func badSchema(t *testing.T, router *gin.Engine, reqBody io.Reader) {
-	w := performRequest(router, "POST", "/v1/orders/", reqBody)
+	w := performRequest(router, "POST", "/v2/orders/", reqBody)
 	assert.Equal(t, 400, w.Code)
 
 	body := responses.Body{}
-	json.Unmarshal([]byte(w.Body.String()), &body)
+	json.Unmarshal(w.Body.Bytes(), &body)
 
 	assert.Equal(t, "bad schema of order request body", body.StatusMessage)
 	assert.Nil(t, body.Payload)
@@ -121,14 +121,19 @@ func testBadValue(t *testing.T, router *gin.Engine) {
 	reqBody = newOrdersRequestBody("pinyu", 1, "large", 1, 5)
 	statusMessage = "invalid ice_id"
 	badValue(t, router, reqBody, statusMessage)
+
+	// vanilla latte cannot adjust sugar
+	reqBody = newOrdersRequestBody("pinyu", 5, "large", 1, 1)
+	statusMessage = "the sugar should be normal"
+	badValue(t, router, reqBody, statusMessage)
 }
 
 func badValue(t *testing.T, router *gin.Engine, reqBody io.Reader, statusMessage string) {
-	w := performRequest(router, "POST", "/v1/orders/", reqBody)
+	w := performRequest(router, "POST", "/v2/orders/", reqBody)
 	assert.Equal(t, 400, w.Code)
 
 	body := responses.Body{}
-	json.Unmarshal([]byte(w.Body.String()), &body)
+	json.Unmarshal(w.Body.Bytes(), &body)
 
 	assert.Equal(t, statusMessage, body.StatusMessage)
 	assert.Nil(t, body.Payload)
@@ -138,12 +143,12 @@ func testListOrders(t *testing.T, router *gin.Engine) {
 	performOrderRequests(router)
 
 	// get the orders
-	w := performRequest(router, "GET", "/v1/orders/", nil)
+	w := performRequest(router, "GET", "/v2/orders/", nil)
 	assert.Equal(t, 200, w.Code)
 
 	// parse status message
 	body := responses.Body{}
-	json.Unmarshal([]byte(w.Body.String()), &body)
+	json.Unmarshal(w.Body.Bytes(), &body)
 
 	// check status message
 	assert.Equal(t, "ok", body.StatusMessage)
@@ -181,15 +186,15 @@ func testListOrders(t *testing.T, router *gin.Engine) {
 func performOrderRequests(router *gin.Engine) {
 	// create the second order
 	reqBody := newOrdersRequestBody("hsinwei", 2, "medium", 2, 2)
-	performRequest(router, "POST", "/v1/orders/", reqBody)
+	performRequest(router, "POST", "/v2/orders/", reqBody)
 
 	// create the third order
 	reqBody = newOrdersRequestBody("yilu", 2, "medium", 2, 2)
-	performRequest(router, "POST", "/v1/orders/", reqBody)
+	performRequest(router, "POST", "/v2/orders/", reqBody)
 
 	// create the fourth order
 	reqBody = newOrdersRequestBody("yuchiao", 2, "large", 2, 2)
-	performRequest(router, "POST", "/v1/orders/", reqBody)
+	performRequest(router, "POST", "/v2/orders/", reqBody)
 }
 
 func assertAggregateOrder(t *testing.T, order *responses.AggregateOrderResponse, item string, size string, sugarTag string, iceTag string, subTotalPrice uint, number uint) {
