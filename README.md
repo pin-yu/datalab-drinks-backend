@@ -18,7 +18,7 @@
 GIN_MODE=release go run src/main.go
 ```
 
-The server will start listening on port 5000
+The server will start listening on port `5002`
 
 ## Tests
 
