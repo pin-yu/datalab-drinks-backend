@@ -39,10 +39,12 @@ func testWeMeiJuice(t *testing.T, body *responses.Body) {
 	sugar := item["sugars"].([]interface{})[3].(map[string]interface{})
 	assert.Equal(t, uint(4), uint(sugar["sugar_id"].(float64)))
 	assert.Equal(t, "正常糖", sugar["sugar_tag"])
+	assert.True(t, sugar["enable"].(bool))
 
 	ice := item["ices"].([]interface{})[3].(map[string]interface{})
 	assert.Equal(t, uint(4), uint(ice["ice_id"].(float64)))
 	assert.Equal(t, "正常冰", ice["ice_tag"])
+	assert.True(t, ice["enable"].(bool))
 }
 
 func testVanillaLatte(t *testing.T, body *responses.Body) {
@@ -57,11 +59,18 @@ func testVanillaLatte(t *testing.T, body *responses.Body) {
 	assert.Equal(t, uint(95), uint(item["large_price"].(float64)))
 	assert.Equal(t, uint(75), uint(item["medium_price"].(float64)))
 
-	sugar := item["sugars"].([]interface{})[0].(map[string]interface{})
+	sugar := item["sugars"].([]interface{})[2].(map[string]interface{})
+	assert.Equal(t, uint(3), uint(sugar["sugar_id"].(float64)))
+	assert.Equal(t, "半糖", sugar["sugar_tag"])
+	assert.False(t, sugar["enable"].(bool))
+
+	sugar = item["sugars"].([]interface{})[3].(map[string]interface{})
 	assert.Equal(t, uint(4), uint(sugar["sugar_id"].(float64)))
 	assert.Equal(t, "正常糖", sugar["sugar_tag"])
+	assert.True(t, sugar["enable"].(bool))
 
 	ice := item["ices"].([]interface{})[3].(map[string]interface{})
 	assert.Equal(t, uint(4), uint(ice["ice_id"].(float64)))
 	assert.Equal(t, "正常冰", ice["ice_tag"])
+	assert.True(t, ice["enable"].(bool))
 }
