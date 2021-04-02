@@ -32,7 +32,7 @@ menu:
         item: "焦糖瑪琪朵"
         large_price: 95
         medium_price: 75
-        sugar_adjustable: true
+        sugar_adjustable: false
         cold_adjustable: true
         hot_adjustable: true
       -

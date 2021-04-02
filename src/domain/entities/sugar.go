@@ -10,3 +10,11 @@ func (s *Sugar) IsNormalSugar() bool {
 	normalSugarID := uint(4)
 	return s.ID == normalSugarID
 }
+
+func (s *Sugar) IsValidSugar(sugarAdjustable bool) bool {
+	if sugarAdjustable {
+		return true
+	}
+
+	return s.IsNormalSugar()
+}
