@@ -27,13 +27,15 @@ type ItemResponse struct {
 }
 
 type SugarResponse struct {
-	ID  uint   `json:"sugar_id"`
-	Tag string `json:"sugar_tag"`
+	ID     uint   `json:"sugar_id"`
+	Tag    string `json:"sugar_tag"`
+	Enable bool   `json:"enable"`
 }
 
 type IceResponse struct {
-	ID  uint   `json:"ice_id"`
-	Tag string `json:"ice_tag"`
+	ID     uint   `json:"ice_id"`
+	Tag    string `json:"ice_tag"`
+	Enable bool   `json:"enable"`
 }
 
 func ConvertMenuEntityToResponse(menu *entities.Menu, sugars *entities.Sugars, ices *entities.Ices) *MenuResponse {
@@ -76,10 +78,11 @@ func convertItemsToResponse(items []entities.Item, sugars *entities.Sugars, ices
 func convertSugarToResponse(sugars *entities.Sugars, sugarAdjustable bool) []SugarResponse {
 	sugarsRes := []SugarResponse{}
 
-	for _, s := range sugars.AdjustSugarList(sugarAdjustable) {
+	for _, s := range sugars.Sugars {
 		sugarsRes = append(sugarsRes, SugarResponse{
-			ID:  s.ID,
-			Tag: s.Tag,
+			ID:     s.ID,
+			Tag:    s.Tag,
+			Enable: s.IsValidSugar(sugarAdjustable),
 		})
 	}
 
@@ -89,10 +92,11 @@ func convertSugarToResponse(sugars *entities.Sugars, sugarAdjustable bool) []Sug
 func convertIceToResponse(ices *entities.Ices, hotAdjustable bool, iceAdjustable bool) []IceResponse {
 	icesRes := []IceResponse{}
 
-	for _, i := range ices.AdjustIceList(hotAdjustable, iceAdjustable) {
+	for _, i := range ices.Ices {
 		icesRes = append(icesRes, IceResponse{
-			ID:  i.ID,
-			Tag: i.Tag,
+			ID:     i.ID,
+			Tag:    i.Tag,
+			Enable: i.IsValidIce(hotAdjustable, iceAdjustable),
 		})
 	}
 
