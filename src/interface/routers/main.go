@@ -8,11 +8,7 @@ import (
 // Run the web server
 func Run() {
 	router := setupRouter()
-<<<<<<< HEAD
-	router.Run(":5002")
-=======
 	router.RunTLS(":5002", "./certs/server.crt", "./certs/server.key")
->>>>>>> master
 }
 
 func setupRouter() *gin.Engine {
