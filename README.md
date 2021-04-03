@@ -1,4 +1,4 @@
-# DataLab Drinks Backend Version 2.0.0
+# DataLab Drinks Backend Version 2.1.0
 
 ## Table of Contents
 **[Run the server](#run-the-server)**<br>
