@@ -19,11 +19,11 @@ func GetDBPath() string {
 	env := os.Getenv("GIN_MODE")
 	switch env {
 	case "release":
-		dbMode = "release-v2_0_0.db"
+		dbMode = "release-v2_1_0.db"
 	case "test":
-		dbMode = "test-v2_0_0.db"
+		dbMode = "test-v2_1_0.db"
 	default:
-		dbMode = "dev-v2_0_0.db"
+		dbMode = "dev-v2_1_0.db"
 	}
 
 	return filepath.Join(basePath,
