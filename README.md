@@ -1,4 +1,4 @@
-# DataLab Drinks Backend Version 2.0.0
+# DataLab Drinks Backend Version 2.1.0
 
 ## Table of Contents
 **[Run the server](#run-the-server)**<br>
@@ -54,37 +54,45 @@ go run src/main.go -m
                         "sugars": [
                             {
                                 "sugar_id": 1,
-                                "sugar_tag": "無糖"
+                                "sugar_tag": "無糖",
+                                "enable": true
                             },
                             {
                                 "sugar_id": 2,
-                                "sugar_tag": "微糖"
+                                "sugar_tag": "微糖",
+                                "enable": true
                             },
                             {
                                 "sugar_id": 3,
-                                "sugar_tag": "半糖"
+                                "sugar_tag": "半糖",
+                                "enable": true
                             },
                             {
                                 "sugar_id": 4,
-                                "sugar_tag": "正常糖"
+                                "sugar_tag": "正常糖",
+                                "enable": true
                             }
                         ],
                         "ices": [
                             {
                                 "ice_id": 1,
-                                "ice_tag": "熱"
+                                "ice_tag": "熱",
+                                "enable": true
                             },
                             {
                                 "ice_id": 2,
-                                "ice_tag": "去冰"
+                                "ice_tag": "去冰",
+                                "enable": true
                             },
                             {
                                 "ice_id": 3,
-                                "ice_tag": "少冰"
+                                "ice_tag": "少冰",
+                                "enable": true
                             },
                             {
                                 "ice_id": 4,
-                                "ice_tag": "正常冰"
+                                "ice_tag": "正常冰",
+                                "enable": true
                             }
                         ]
                     }
@@ -214,10 +222,16 @@ go run src/main.go -m
 - get history orders, not only just get this week's order (in development)
 
 ## Change Log
+### 2021/4/3 - Version 2.1.0
+- Enable HTTPS
+- Slightly revise menu format
+    - Add a enable flag within sugar list
+    - Add an enable flag within ice list
+
 ### 2021/3/19 - Version 2.0.0
 - change URL from /v1 to /v2
 - Revise the returned format of /v2/menu in order to aggregate the business logic in this project
     - sugar and ice list will be returned within the item
 
 ### 2021/2/17 - Version 1.0.0
-- first release
+- First release
