@@ -166,21 +166,21 @@ func testListOrders(t *testing.T, router *gin.Engine) {
 	assert.Equal(t, utils.MeetingStartTime().Format(time.RFC3339), orders.MeetingTime)
 
 	// check totalPrice
-	assert.Equal(t, uint(240), orders.TotalPrice)
+	assert.Equal(t, uint(275), orders.TotalPrice)
 
 	// check aggregateOrders
 	assert.Len(t, orders.AggregateOrders, 3)
 
-	assertAggregateOrder(t, &orders.AggregateOrders[0], "黑咖啡", "large", "無糖", "熱", uint(60), 1)
-	assertAggregateOrder(t, &orders.AggregateOrders[1], "特調咖啡", "large", "微糖", "去冰", uint(70), 1)
-	assertAggregateOrder(t, &orders.AggregateOrders[2], "特調咖啡", "medium", "微糖", "去冰", uint(110), 2)
+	assertAggregateOrder(t, &orders.AggregateOrders[0], "cama 經典黑咖啡", "large", "無糖", "熱", uint(60), 1)
+	assertAggregateOrder(t, &orders.AggregateOrders[1], "cama 經典拿鐵", "large", "微糖", "去冰", uint(85), 1)
+	assertAggregateOrder(t, &orders.AggregateOrders[2], "cama 經典拿鐵", "medium", "微糖", "去冰", uint(130), 2)
 
 	// check detailOrders
 	assert.Len(t, orders.DetailOrders, 4)
-	assertDetailOrder(t, &orders.DetailOrders[0], "pinyu", "large", "黑咖啡", uint(60), "無糖", "熱")
-	assertDetailOrder(t, &orders.DetailOrders[1], "hsinwei", "medium", "特調咖啡", uint(55), "微糖", "去冰")
-	assertDetailOrder(t, &orders.DetailOrders[2], "yilu", "medium", "特調咖啡", uint(55), "微糖", "去冰")
-	assertDetailOrder(t, &orders.DetailOrders[3], "yuchiao", "large", "特調咖啡", uint(70), "微糖", "去冰")
+	assertDetailOrder(t, &orders.DetailOrders[0], "pinyu", "large", "cama 經典黑咖啡", uint(60), "無糖", "熱")
+	assertDetailOrder(t, &orders.DetailOrders[1], "hsinwei", "medium", "cama 經典拿鐵", uint(65), "微糖", "去冰")
+	assertDetailOrder(t, &orders.DetailOrders[2], "yilu", "medium", "cama 經典拿鐵", uint(65), "微糖", "去冰")
+	assertDetailOrder(t, &orders.DetailOrders[3], "yuchiao", "large", "cama 經典拿鐵", uint(85), "微糖", "去冰")
 }
 
 func performOrderRequests(router *gin.Engine) {

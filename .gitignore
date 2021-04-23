@@ -12,7 +12,9 @@
 main
 
 # Certs
-certs
+*cert*
+*.crt
+*.pem
 
 # Test binary, built with `go test -c`
 *.test

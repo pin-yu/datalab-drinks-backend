@@ -1,4 +1,4 @@
-# DataLab Drinks Backend Version 2.1.0
+# DataLab Drinks Backend Version 2.2.0
 
 ## Table of Contents
 **[Run the server](#run-the-server)**<br>
@@ -13,7 +13,18 @@
 **[Change Log](#change-log)**<br>
 
 ## Run the server
+### Docker
+1. The server is running in HTTPS, so place fullchain.pem and privkey.pem in `./certs`. See certbot for more information.
+2. build
+    ```bash
+    docker build -t datalab-drinks-backend .
+    ```
+3. run
+    ```bash
+    docker run -p 5002:5002 datalab-drinks-backend
+    ```
 
+### GoEnv
 ```bash
 GIN_MODE=release go run src/main.go
 ```
@@ -37,11 +48,13 @@ go run src/main.go -m
 ### GET: `/v2/menus`
 - return Cama's menu in json format
 
+`Although the content in the JSON is outdated, the format is correct.`
+
 ```json
 {
     "status_message": "ok",
     "payload": {
-        "menu_version": "2020W",
+        "menu_version": "2020w",
         "menu": [
             {
                 "series": "現烘義式",
@@ -222,6 +235,9 @@ go run src/main.go -m
 - get history orders, not only just get this week's order (in development)
 
 ## Change Log
+### 2021/4/23 - Version 2.2.0
+- Update Cama drinks menu
+
 ### 2021/4/3 - Version 2.1.0
 - Enable HTTPS
 - Slightly revise menu format
