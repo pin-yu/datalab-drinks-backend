@@ -32,7 +32,4 @@ main
 # database
 src/infrastructure/local
 
-# temporary ignore
-dockerfile
-
 # End of https://www.toptal.com/developers/gitignore/api/go
