@@ -236,12 +236,14 @@ go run src/main.go -m
 ```
 
 ## TODO
-- dockerize (in development)
-- get history orders, not only just get this week's order (in development)
+- using k8s to run a pod and monitor pod states
+- get history orders, not only just get this week's order
+
 
 ## Change Log
 ### 2021/4/23 - Version 2.2.0
 - Update Cama drinks menu
+- dockerize the server
 
 ### 2021/4/3 - Version 2.1.0
 - Enable HTTPS
