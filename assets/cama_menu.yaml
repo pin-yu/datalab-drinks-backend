@@ -1,11 +1,11 @@
-menu_version: "2020W"
+menu_version: "2021-spring"
 menu:
   - 
-    series: "現烘義式"
+    series: "咖啡系列"
     items:
       - 
         item_id: 1
-        item: "黑咖啡"
+        item: "cama 經典黑咖啡"
         large_price: 60
         medium_price: 45
         sugar_adjustable: true
@@ -13,9 +13,9 @@ menu:
         hot_adjustable: true
       -
         item_id: 2
-        item: "特調咖啡"
-        large_price: 70
-        medium_price: 55
+        item: "cama 經典拿鐵"
+        large_price: 85
+        medium_price: 65
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
@@ -77,9 +77,9 @@ menu:
         hot_adjustable: true
       -
         item_id: 10
-        item: "拿鐵"
-        large_price: 85
-        medium_price: 65
+        item: "摩卡咖啡"
+        large_price: 95
+        medium_price: 75
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
@@ -88,85 +88,90 @@ menu:
     items:
       - 
         item_id: 11
-        item: "蜂蜜鮮奶茶"
-        large_price: 85
-        medium_price: 65
-        sugar_adjustable: false
+        item: "純高山錫蘭茶"
+        large_price: 40
+        medium_price: 35
+        sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - 
         item_id: 12
-        item: "紅茶拿鐵"
-        large_price: 80
-        medium_price: 60
+        item: "純清焙烏龍茶"
+        large_price: 40
+        medium_price: 35
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - 
         item_id: 13
-        item: "皇家奶茶"
-        large_price: 50
-        medium_price: 40
+        item: "鮮奶高山錫蘭"
+        large_price: 70
+        medium_price: 55
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - 
         item_id: 14
-        item: "抹茶鮮奶"
-        large_price: 80
-        medium_price: 65
+        item: "鮮奶清焙烏龍"
+        large_price: 70
+        medium_price: 55
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - 
         item_id: 15
-        item: "芒果烤茶"
-        large_price: 65
-        medium_price: null
+        item: "特調高山錫蘭"
+        large_price: 60
+        medium_price: 50
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - 
         item_id: 16
-        item: "英倫早餐茶"
-        large_price: null
-        medium_price: 40
+        item: "特調清焙烏龍"
+        large_price: 60
+        medium_price: 50
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - 
         item_id: 17
-        item: "花草茶"
-        large_price: null
-        medium_price: 40
+        item: "蘋果檸香錫蘭紅茶"
+        large_price: 65
+        medium_price: 55
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - 
         item_id: 18
-        item: "日式烘烤煎茶"
-        large_price: null
-        medium_price: 40
+        item: "蜜桃荔枝錫蘭紅茶"
+        large_price: 65
+        medium_price: 55
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
-  -
-    series: "其他飲品"
-    items:
       - 
         item_id: 19
-        item: "經典巧克力"
-        large_price: 95
-        medium_price: 75
+        item: "德國花草茶"
+        large_price: 65
+        medium_price: 45
         sugar_adjustable: true
         cold_adjustable: true
         hot_adjustable: true
       - 
         item_id: 20
-        item: "純釀烏梅汁"
-        large_price: 50
-        medium_price: 40
+        item: "浮雲奶蓋錫蘭紅"
+        large_price: 60
+        medium_price: 50
         sugar_adjustable: true
         cold_adjustable: true
-        hot_adjustable: true
+        hot_adjustable: false
+      - 
+        item_id: 21
+        item: "浮雲奶蓋烏龍茶"
+        large_price: 60
+        medium_price: 50
+        sugar_adjustable: true
+        cold_adjustable: true
+        hot_adjustable: false
 

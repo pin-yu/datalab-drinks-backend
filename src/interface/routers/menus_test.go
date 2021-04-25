@@ -18,23 +18,23 @@ func TestReadMenu(t *testing.T) {
 	json.Unmarshal(w.Body.Bytes(), &body)
 	assert.Equal(t, "ok", body.StatusMessage)
 
-	assert.Equal(t, "2020W", body.Payload.(map[string]interface{})["menu_version"])
+	assert.Equal(t, "2021-spring", body.Payload.(map[string]interface{})["menu_version"])
 
-	testWeMeiJuice(t, &body)
+	testWuLong(t, &body)
 	testVanillaLatte(t, &body)
 }
 
-func testWeMeiJuice(t *testing.T, body *responses.Body) {
-	// { "menu": [{...}, {...}, {"series": "其他飲品", "items": [{}, {"item":"純釀烏梅汁"...}]}]}
-	menu := body.Payload.(map[string]interface{})["menu"].([]interface{})[2].(map[string]interface{})
-	assert.Equal(t, "其他飲品", menu["series"])
+func testWuLong(t *testing.T, body *responses.Body) {
+	// { "menu": [{...}, {"series": "精選茶飲", "items": [{}, {"item":"鮮奶清焙烏龍"...}]}]}
+	menu := body.Payload.(map[string]interface{})["menu"].([]interface{})[1].(map[string]interface{})
+	assert.Equal(t, "精選茶飲", menu["series"])
 
 	// check item
-	item := menu["items"].([]interface{})[1].(map[string]interface{})
-	assert.Equal(t, uint(20), uint(item["item_id"].(float64)))
-	assert.Equal(t, "純釀烏梅汁", item["item"])
-	assert.Equal(t, uint(50), uint(item["large_price"].(float64)))
-	assert.Equal(t, uint(40), uint(item["medium_price"].(float64)))
+	item := menu["items"].([]interface{})[3].(map[string]interface{})
+	assert.Equal(t, uint(14), uint(item["item_id"].(float64)))
+	assert.Equal(t, "鮮奶清焙烏龍", item["item"])
+	assert.Equal(t, uint(70), uint(item["large_price"].(float64)))
+	assert.Equal(t, uint(55), uint(item["medium_price"].(float64)))
 
 	sugar := item["sugars"].([]interface{})[3].(map[string]interface{})
 	assert.Equal(t, uint(4), uint(sugar["sugar_id"].(float64)))
@@ -50,7 +50,7 @@ func testWeMeiJuice(t *testing.T, body *responses.Body) {
 func testVanillaLatte(t *testing.T, body *responses.Body) {
 	// { "menu": [{...}, {...}, {"series": "其他飲品", "items": [{}, {"item":"純釀烏梅汁"...}]}]}
 	menu := body.Payload.(map[string]interface{})["menu"].([]interface{})[0].(map[string]interface{})
-	assert.Equal(t, "現烘義式", menu["series"])
+	assert.Equal(t, "咖啡系列", menu["series"])
 
 	// check item
 	item := menu["items"].([]interface{})[4].(map[string]interface{})
