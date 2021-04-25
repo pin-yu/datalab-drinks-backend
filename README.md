@@ -1,6 +1,8 @@
 # DataLab Drinks Backend Version 2.2.0
 
 ## Table of Contents
+**[Todo](#todo)**<br>
+
 **[Run the server](#run-the-server)**<br>
 **[Tests](#tests)**</br>
 **[Data Migration](#data-migration)**</br>
@@ -9,8 +11,13 @@
 - **[GET: /v2/orders](#get:-`/v2/orders`)**
 - **[POST: /v2/orders](#post:-`/v2/orders`)**
 
-**[Todo](#todo)**<br>
 **[Change Log](#change-log)**<br>
+
+## TODO
+- enable github CI
+- enable google login
+- using k8s to run a pod and monitor pod states
+- get history orders, not only just get this week's order
 
 ## Run the server
 ### Docker
@@ -234,11 +241,6 @@ go run src/main.go -m
     "ice_id": 2
 }
 ```
-
-## TODO
-- using k8s to run a pod and monitor pod states
-- get history orders, not only just get this week's order
-
 
 ## Change Log
 ### 2021/4/23 - Version 2.2.0
