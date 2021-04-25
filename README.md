@@ -19,9 +19,14 @@
     ```bash
     docker build -t datalab-drinks-backend .
     ```
+3. make sure we have migrated data
+    ```bash
+    GIN_MODE=release go run src/main.go -m
+    ```
+
 3. run
     ```bash
-    docker run -p 5002:5002 datalab-drinks-backend
+    docker run --rm -d -p 5002:5002 -v "$(pwd)"/src/infrastructure/local:/app/src/infrastructure/local --name drinks-server datalab-drinks-backend
     ```
 
 ### GoEnv

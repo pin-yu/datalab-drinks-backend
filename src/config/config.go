@@ -9,6 +9,7 @@ import (
 )
 
 var (
+	version  = "v2_2_0"
 	basePath = utils.GetBasePath()
 )
 
@@ -19,11 +20,11 @@ func GetDBPath() string {
 	env := os.Getenv("GIN_MODE")
 	switch env {
 	case "release":
-		dbMode = "release-v2_1_0.db"
+		dbMode = fmt.Sprintf("release-%s.db", version)
 	case "test":
-		dbMode = "test-v2_1_0.db"
+		dbMode = fmt.Sprintf("test-%s.db", version)
 	default:
-		dbMode = "dev-v2_1_0.db"
+		dbMode = fmt.Sprintf("dev-%s.db", version)
 	}
 
 	return filepath.Join(basePath,
