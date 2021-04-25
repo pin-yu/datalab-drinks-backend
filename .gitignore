@@ -12,7 +12,9 @@
 main
 
 # Certs
-certs
+*cert*
+*.crt
+*.pem
 
 # Test binary, built with `go test -c`
 *.test
@@ -29,8 +31,5 @@ certs
 
 # database
 src/infrastructure/local
-
-# temporary ignore
-dockerfile
 
 # End of https://www.toptal.com/developers/gitignore/api/go
