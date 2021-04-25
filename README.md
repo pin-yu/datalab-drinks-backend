@@ -250,7 +250,7 @@ go run src/main.go -m
 ### 2021/4/3 - Version 2.1.0
 - Enable HTTPS
 - Slightly revise menu format
-    - Add a enable flag within sugar list
+    - Add an enable flag within sugar list
     - Add an enable flag within ice list
 
 ### 2021/3/19 - Version 2.0.0
