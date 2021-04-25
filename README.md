@@ -223,7 +223,7 @@ go run src/main.go -m
 ## POST: `/v2/orders`
 - requires json body
 - if you want to update the order, just re-post
-    - The server considers the value of `order_by` as key
+    - The server considers the value of `order_by` as a key
 
 ```json
 {
