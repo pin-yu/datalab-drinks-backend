@@ -250,13 +250,13 @@ go run src/main.go -m
 ### 2021/4/3 - Version 2.1.0
 - Enable HTTPS
 - Slightly revise menu format
-    - Add an enable flag within sugar list
-    - Add an enable flag within ice list
+    - Add an enable flag within the sugar list
+    - Add an enable flag within the ice list
 
 ### 2021/3/19 - Version 2.0.0
 - change URL from /v1 to /v2
 - Revise the returned format of /v2/menu in order to aggregate the business logic in this project
-    - sugar and ice list will be returned within the item
+    - sugar and ice list will be returned within an item
 
 ### 2021/2/17 - Version 1.0.0
 - First release
