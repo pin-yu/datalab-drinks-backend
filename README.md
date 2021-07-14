@@ -1,5 +1,5 @@
 # DataLab Drinks Backend Version 2.2.0
-![Unit Test](https://github.com/pin-yu/datalab-drinks-backend/actions/workflows/github_actions/badge.svg)
+![Unit Test](https://github.com/pin-yu/datalab-drinks-backend/actions/workflows/github_actions.yml/badge.svg)
 
 ## Table of Contents
 **[Todo](#todo)**<br>
