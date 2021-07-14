@@ -14,9 +14,8 @@
 **[Change Log](#change-log)**<br>
 
 ## TODO
-- enable github CI
+- enable github actions
 - enable google login
-- using k8s to run a pod and monitor pod states
 - get history orders, not only just get this week's order
 
 ## Run the server
