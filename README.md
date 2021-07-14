@@ -1,6 +1,9 @@
 # DataLab Drinks Backend Version 2.2.0
+![Unit Test](https://github.com/pin-yu/datalab-drinks-backend/actions/workflows/github_actions.yml/badge.svg)
 
 ## Table of Contents
+**[Todo](#todo)**<br>
+
 **[Run the server](#run-the-server)**<br>
 **[Tests](#tests)**</br>
 **[Data Migration](#data-migration)**</br>
@@ -9,8 +12,12 @@
 - **[GET: /v2/orders](#get:-`/v2/orders`)**
 - **[POST: /v2/orders](#post:-`/v2/orders`)**
 
-**[Todo](#todo)**<br>
 **[Change Log](#change-log)**<br>
+
+## TODO
+- enable github actions
+- enable google login
+- get history orders, not only just get this week's order
 
 ## Run the server
 ### Docker
@@ -223,7 +230,7 @@ go run src/main.go -m
 ## POST: `/v2/orders`
 - requires json body
 - if you want to update the order, just re-post
-    - The server considers the value of `order_by` as key
+    - The server considers the value of `order_by` as a key
 
 ```json
 {
@@ -235,24 +242,22 @@ go run src/main.go -m
 }
 ```
 
-## TODO
-- dockerize (in development)
-- get history orders, not only just get this week's order (in development)
-
 ## Change Log
 ### 2021/4/23 - Version 2.2.0
 - Update Cama drinks menu
+- dockerize the server
+
 
 ### 2021/4/3 - Version 2.1.0
 - Enable HTTPS
 - Slightly revise menu format
-    - Add a enable flag within sugar list
-    - Add an enable flag within ice list
+    - Add an enable flag within the sugar list
+    - Add an enable flag within the ice list
 
 ### 2021/3/19 - Version 2.0.0
 - change URL from /v1 to /v2
 - Revise the returned format of /v2/menu in order to aggregate the business logic in this project
-    - sugar and ice list will be returned within the item
+    - sugar and ice list will be returned within an item
 
 ### 2021/2/17 - Version 1.0.0
 - First release

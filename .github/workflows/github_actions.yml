@@ -1,0 +1,14 @@
+name: Datalab Drinks Backend Test
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: "^1.16.1"
+      - run: go version
+      - run: mkdir src/infrastructure/local
+      - name: tests
+        run: GIN_MODE=test go test ./...
