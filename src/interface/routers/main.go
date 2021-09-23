@@ -1,21 +1,19 @@
 package routers
 
 import (
-	"path/filepath"
-
 	"github.com/gin-gonic/gin"
-	"github.com/pin-yu/datalab-drinks-backend/src/utils"
 	cors "github.com/rs/cors/wrapper/gin"
 )
 
 // Run the web server
 func Run() {
 	router := setupRouter()
-	router.RunTLS(
-		":5002",
-		filepath.Join(utils.GetBasePath(), "../../certs/fullchain.pem"),
-		filepath.Join(utils.GetBasePath(), "../../certs/privkey.pem"),
-	)
+	router.Run(":5002")
+	// router.RunTLS(
+	// 	":5002",
+	// 	filepath.Join(utils.GetBasePath(), "../../certs/fullchain.pem"),
+	// 	filepath.Join(utils.GetBasePath(), "../../certs/privkey.pem"),
+	// )
 }
 
 func setupRouter() *gin.Engine {
