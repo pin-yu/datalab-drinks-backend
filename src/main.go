@@ -30,6 +30,7 @@ func main() {
 		services.DropTable()
 	} else {
 		// starts the server
+		services.MigrateTable()
 		routers.Run()
 	}
 }
