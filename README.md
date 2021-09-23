@@ -33,7 +33,7 @@
 
 3. run
     ```bash
-    docker run --rm -d -p 5002:5002 -v "$(pwd)"/src/infrastructure/local:/app/src/infrastructure/local --name drinks-server datalab-drinks-backend
+    docker run --rm -d -p 5002:5002 --mount type=bind,source=$(pwd)/src/infrastructure/local,target=/app/src/infrastructure/local --name drinks-server datalab-drinks-backend
     ```
 
 ### GoEnv
