@@ -64,7 +64,7 @@ go run src/main.go -m
 ### GET: `/v2/menus`
 - return Cama's menu in json format
 
-`Although the content in the JSON is outdated, the format is correct.`
+`Although the content in the JSON is outdated, this format is correct.`
 
 ```json
 {
