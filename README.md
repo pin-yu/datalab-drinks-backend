@@ -31,9 +31,13 @@
     GIN_MODE=release go run src/main.go -m
     ```
 
-3. run
+3. run (rm after stopped)
     ```bash
     docker run --rm -d -p 5002:5002 --mount type=bind,source=$(pwd)/src/infrastructure/local,target=/app/src/infrastructure/local --name drinks-server datalab-drinks-backend
+    ```
+    run (restart after stopped)
+    ```bash
+    docker run -d -p 5002:5002 --restart always --mount type=bind,source=$(pwd)/src/infrastructure/local,target=/app/src/infrastructure/local --name drinks-server datalab-drinks-backend
     ```
 
 ### GoEnv
@@ -60,7 +64,7 @@ go run src/main.go -m
 ### GET: `/v2/menus`
 - return Cama's menu in json format
 
-`Although the content in the JSON is outdated, the format is correct.`
+`Although the content in the JSON is outdated, this format is correct.`
 
 ```json
 {
